@@ -1,0 +1,43 @@
+<div>
+  <header><h1>Welcome to ng_Snake!</h1></header>
+
+  <h3>Please enter your credentials.</h3>
+  <input
+    pattern="^[a-zA-Z0-9_.+-]+$"
+    required
+    minlength="3"
+    maxlength="30"
+    [(ngModel)]="playerName"
+    placeholder="Name"
+    #name="ngModel"
+    ng-disabled="disable"
+  />
+  <div *ngIf="name.invalid && name.touched" class="alert">
+    <div *ngIf="name.errors?.['required']">Name is required.</div>
+    <div *ngIf="name.errors?.['minlength']">
+      Name must be at least 3 characters long.
+    </div>
+    <div *ngIf="name.errors?.['pattern']">Name has illegal characters.</div>
+  </div>
+  <br />
+  <input
+    pattern="(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$)"
+    required
+    minlength="6"
+    [(ngModel)]="playerEmail"
+    placeholder="Email"
+    #email="ngModel"
+  />
+  <div *ngIf="email.invalid && email.touched" class="alert">
+    <div *ngIf="email.errors?.['required']">Email is required.</div>
+    <div *ngIf="email.errors?.['minlength']">
+      Email must be at least 6 characters long.
+    </div>
+    <div *ngIf="email.errors?.['pattern']">Email must be viable.</div>
+  </div>
+
+  <br />
+  <button (click)="submit()" [disabled]="!name.valid || !email.valid">
+    Submit
+  </button>
+</div>

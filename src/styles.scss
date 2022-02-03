@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  position: relative;
+
+  display: inline-block;
+  flex-direction: column;
+}
+header {
+  display: block;
+  min-height: 100px;
+  min-width: 100%;
+  background-color: blanchedalmond;
+  background-image: url("/ng_Snake/src/assets/retro-background.jpg");
+}

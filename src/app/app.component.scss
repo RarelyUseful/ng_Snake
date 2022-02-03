@@ -1,0 +1,17 @@
+:host {
+  border: 1vh solid olive;
+  min-height: 500px;
+  min-width: 550px;
+  display: inline-block;
+  width: auto;
+  text-align: center;
+  //background-color: gray;
+}
+.DarkTheme {
+  background-color: black;
+  background: black;
+}
+.LightTheme {
+  background-color: wheat;
+  background: wheat;
+}

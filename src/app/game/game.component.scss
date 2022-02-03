@@ -1,0 +1,20 @@
+:host {
+  min-height: 100%;
+  min-width: 100%;
+}
+.DarkTheme {
+  background-color: black;
+  background: black;
+}
+.LightTheme {
+  background-color: wheat;
+  background: wheat;
+}
+.controls {
+  float: right;
+  text-align: center;
+}
+
+ngx-snake {
+  display: inline-block;
+}
