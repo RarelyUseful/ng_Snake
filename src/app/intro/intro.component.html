@@ -1,6 +1,12 @@
+<header>
+  <h1>Welcome to ng_Snake!</h1>
+  <h3>
+    <div><br /></div>
+    <div><br /></div>
+    <br />
+  </h3>
+</header>
 <div>
-  <header><h1>Welcome to ng_Snake!</h1></header>
-
   <h3>Please enter your credentials.</h3>
   <input
     pattern="^[a-zA-Z0-9_.+-]+$"
@@ -38,6 +44,6 @@
 
   <br />
   <button (click)="submit()" [disabled]="!name.valid || !email.valid">
-    Submit
+    PLAY
   </button>
 </div>

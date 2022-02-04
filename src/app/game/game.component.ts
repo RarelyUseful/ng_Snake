@@ -14,27 +14,64 @@ import { NgxSnakeComponent } from 'ngx-snake';
   styleUrls: ['./game.component.scss'],
 })
 export class GameComponent implements OnInit {
-  public darkMode = true;
+  public darkMode = false;
   @Input() playerName: string = '';
   @Output() pReady = new EventEmitter<boolean>();
   public score: number = 0;
+  public isRunning: boolean = false;
+  counter: number = 0;
+  interval: any;
+  public time: number = 0;
+
+  startTimer() {
+    this.isRunning = true;
+    this.interval = setInterval(() => {
+      this.counter++;
+      this.time = this.counter / 10;
+    }, 100);
+  }
+
+  pauseTimer() {
+    this.isRunning = false;
+    clearInterval(this.interval);
+  }
   constructor() {}
+
   @ViewChild(NgxSnakeComponent)
   private _snake!: NgxSnakeComponent;
 
-  public onStart() {
+  public startB() {
+    this.startTimer();
     this._snake.actionStart();
   }
-  public onStop() {
+  public stopB() {
+    this.pauseTimer();
     this._snake.actionStop();
   }
-  public onReset() {
+  public resetB() {
+    this.pauseTimer();
+    this.counter = 0;
+    this.time = 0;
     this._snake.actionReset();
+    this.score = 0;
   }
+
+  public upB() {
+    this._snake.actionUp();
+  }
+  public rightB() {
+    this._snake.actionRight();
+  }
+  public downB() {
+    this._snake.actionDown();
+  }
+  public leftB() {
+    this._snake.actionLeft();
+  }
+
   public goBack() {
     this.pReady.emit(false);
-    this.onStop();
-    this.onReset();
+    window.location.reload();
   }
   public onGrow() {
     console.log('grow');
@@ -42,7 +79,10 @@ export class GameComponent implements OnInit {
   }
 
   public onGameOver() {
-    alert(`Game over. :( \nYour score: ${this.score}`);
+    this.pauseTimer();
+    alert(
+      `\n Game over :( \n\n Your playtime: ${this.time} \n Your score: ${this.score}`
+    );
   }
 
   ngOnInit(): void {}

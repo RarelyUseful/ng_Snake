@@ -4,7 +4,7 @@
 html,
 body {
   position: relative;
-
+  background: rgb(255, 255, 255);
   display: inline-block;
   flex-direction: column;
 }
@@ -12,6 +12,78 @@ header {
   display: block;
   min-height: 100px;
   min-width: 100%;
-  background-color: blanchedalmond;
-  background-image: url("/ng_Snake/src/assets/retro-background.jpg");
+  background-color: rgb(25, 25, 25);
+  color: azure;
+}
+ngx-snake {
+  ngx-snake-tile {
+    background: rgb(255, 255, 255);
+    &.free {
+      div {
+        background: rgb(255, 255, 255);
+      }
+    }
+  }
+}
+.DarkTheme {
+  background-color: rgb(25, 25, 25);
+  color: aliceblue;
+  body {
+    background: rgb(25, 25, 25);
+  }
+  ngx-snake {
+    ngx-snake-tile {
+      background: rgb(255, 255, 255);
+      &.free {
+        div {
+          background: rgb(255, 255, 255);
+        }
+      }
+    }
+  }
+}
+.LightTheme {
+  background-color: rgb(255, 255, 255);
+  color: black;
+  body {
+    background: rgb(255, 255, 255);
+  }
+  ngx-snake {
+    ngx-snake-tile {
+      background: rgb(255, 255, 255);
+      &.free {
+        div {
+          background: rgb(255, 255, 255);
+        }
+      }
+    }
+  }
+}
+
+.myButton {
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+  min-width: 50px;
+  min-height: 50px;
+  padding: 8px;
+  border-radius: 50px;
+  font-family: Georgia, serif;
+  font-weight: 500;
+  text-decoration: none;
+  text-transform: none;
+  background-image: radial-gradient(
+    at center center,
+    rgb(28, 110, 164) 0%,
+    rgb(35, 136, 203) 27%,
+    rgb(20, 78, 117) 100%
+  );
+  box-shadow: rgb(0, 0, 0) 1px 1px 3px 1px;
+  border: 2px solid rgb(28, 110, 164);
+  display: inline-block;
+}
+.myButton:hover {
+  background: rgb(28, 110, 164);
+}
+.myButton:active {
+  background: rgb(20, 78, 117);
 }

@@ -1,17 +1,26 @@
 <header>
-  <h1>Welcome, {{ playerName }}.</h1>
-  <h1>Your score: {{ score }}</h1>
+  <h1>Welcome {{ playerName }}.</h1>
+  <h3>
+    <div *ngIf="isRunning">Playing...</div>
+    <div *ngIf="!isRunning">Game Paused</div>
+    Playtime: {{ time }} <br />Score: {{ score }}
+  </h3>
 </header>
 
 <ngx-snake #game (foodEaten)="onGrow()" (gameOver)="onGameOver()"></ngx-snake>
 
 <table class="controls">
   <tr>
-    <td><button (click)="game.actionStart()">Start</button></td>
-    <td><button (click)="game.actionStop()">Stop</button></td>
-    <td><button (click)="game.actionReset()">Reset</button></td>
+    <td>
+      <button class="myButton" (click)="startB()">Start</button>
+    </td>
+    <td><button class="myButton" (click)="stopB()">Stop</button></td>
+    <td>
+      <button class="myButton" (click)="resetB()">Reset</button>
+    </td>
     <td></td>
   </tr>
+
   <tr>
     <td></td>
   </tr>
@@ -23,31 +32,62 @@
   </tr>
   <tr>
     <td></td>
-    <td><button (click)="game.actionUp()">Up</button></td>
+    <td>
+      <button class="myButton" (click)="upB()" (window:keydown.arrowup)="upB()">
+        &#8657;
+      </button>
+    </td>
   </tr>
   <tr>
-    <td><button (click)="game.actionLeft()">Left</button></td>
+    <td>
+      <button
+        class="myButton"
+        (click)="leftB()"
+        (window:keydown.arrowleft)="leftB()"
+      >
+        &#8656;
+      </button>
+    </td>
     <td></td>
-    <td><button (click)="game.actionRight()">Right</button></td>
+    <td>
+      <button
+        class="myButton"
+        (click)="rightB()"
+        (window:keydown.arrowright)="rightB()"
+      >
+        &#8658;
+      </button>
+    </td>
   </tr>
   <tr>
     <td></td>
-    <td><button (click)="game.actionDown()">Down</button></td>
+    <td>
+      <button
+        class="myButton"
+        (click)="downB()"
+        (window:keydown.arrowdown)="downB()"
+      >
+        &#8659;
+      </button>
+    </td>
   </tr>
+
   <tr style="height: 20px">
     <td></td>
   </tr>
   <tr>
     <td colspan="3">
       <button *ngIf="!darkMode" class="DarkTheme" (click)="darkMode = true">
-        Dark Mode
+        Switch to DarkTheme
       </button>
       <button *ngIf="darkMode" class="LightTheme" (click)="darkMode = false">
-        Light Mode
+        Just kidding, lol xD
       </button>
     </td>
   </tr>
+  <tr>
+    <td colspan="3">
+      <button class="DarkTheme" (click)="goBack()">Back do login</button>
+    </td>
+  </tr>
 </table>
-<footer>
-  <button (click)="goBack()">Go back to login page...</button>
-</footer>

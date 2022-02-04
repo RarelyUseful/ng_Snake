@@ -10,7 +10,8 @@ export class IntroComponent implements OnInit {
   @Output() pName = new EventEmitter<string>();
   @Output() pReady = new EventEmitter<boolean>();
   ngOnInit(): void {}
-  public playerName: string = '';
+  @Input() playerName: string = '';
+
   public playerEmail: string = '';
   public isOK: boolean = false;
 
