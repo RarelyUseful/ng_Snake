@@ -7,7 +7,15 @@ import {
   ViewChild,
 } from '@angular/core';
 import { NgxSnakeComponent } from 'ngx-snake';
+class Log {
+  timestamp: number;
+  event: string;
 
+  constructor(timestamp: number, event: string) {
+    this.timestamp = timestamp;
+    this.event = event;
+  }
+}
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
@@ -22,15 +30,22 @@ export class GameComponent implements OnInit {
   counter: number = 0;
   interval: any;
   public time: number = 0;
-
-  startTimer() {
-    this.isRunning = true;
-    this.interval = setInterval(() => {
-      this.counter++;
-      this.time = this.counter / 10;
-    }, 100);
+  public history: Array<Log> = [];
+  public showHistory: boolean = false;
+  toggleHistory() {
+    if (this.showHistory) {
+      this.showHistory = false;
+    } else this.showHistory = true;
   }
-
+  startTimer() {
+    if (this.isRunning === false) {
+      this.isRunning = true;
+      this.interval = setInterval(() => {
+        this.counter++;
+        this.time = this.counter / 20;
+      }, 50);
+    }
+  }
   pauseTimer() {
     this.isRunning = false;
     clearInterval(this.interval);
@@ -41,10 +56,18 @@ export class GameComponent implements OnInit {
   private _snake!: NgxSnakeComponent;
 
   public startB() {
-    this.startTimer();
+    if (this.isGameOver === false) {
+      if (!this.isRunning) {
+        this.history.push({ timestamp: this.time, event: 'Game started' });
+      }
+      this.startTimer();
+    }
     this._snake.actionStart();
   }
   public stopB() {
+    if (this.isRunning) {
+      this.history.push({ timestamp: this.time, event: 'Game stopped' });
+    }
     this.pauseTimer();
     this._snake.actionStop();
   }
@@ -54,19 +77,24 @@ export class GameComponent implements OnInit {
     this.time = 0;
     this._snake.actionReset();
     this.score = 0;
+    this.history = [];
   }
 
   public upB() {
     this._snake.actionUp();
+    this.history.push({ timestamp: this.time, event: 'input: UP' });
   }
   public rightB() {
     this._snake.actionRight();
+    this.history.push({ timestamp: this.time, event: 'input: RIGHT' });
   }
   public downB() {
     this._snake.actionDown();
+    this.history.push({ timestamp: this.time, event: 'input: DOWN' });
   }
   public leftB() {
     this._snake.actionLeft();
+    this.history.push({ timestamp: this.time, event: 'input: LEFT' });
   }
 
   public goBack() {
@@ -76,10 +104,14 @@ export class GameComponent implements OnInit {
   public onGrow() {
     console.log('grow');
     this.score++;
+    this.history.push({ timestamp: this.time, event: 'Snake GROWS' });
   }
-
+  public isGameOver: boolean = false;
   public onGameOver() {
     this.pauseTimer();
+    this.isGameOver = true;
+    this.history.push({ timestamp: this.time, event: 'Game over' });
+
     alert(
       `\n Game over :( \n\n Your playtime: ${this.time} \n Your score: ${this.score}`
     );

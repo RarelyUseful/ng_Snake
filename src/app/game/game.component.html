@@ -3,7 +3,7 @@
   <h3>
     <div *ngIf="isRunning">Playing...</div>
     <div *ngIf="!isRunning">Game Paused</div>
-    Playtime: {{ time }} <br />Score: {{ score }}
+    Playtime: {{ time | number: "1.2-2" }} <br />Score: {{ score }}
   </h3>
 </header>
 
@@ -91,3 +91,16 @@
     </td>
   </tr>
 </table>
+<div>
+  <button *ngIf="showHistory" class="LightTheme" (click)="toggleHistory()">
+    Hide game logs
+  </button>
+  <button *ngIf="!showHistory" class="DarkTheme" (click)="toggleHistory()">
+    Show game logs
+  </button>
+  <tr>
+    <ul *ngIf="showHistory">
+      <li *ngFor="let log of history">{{ log.timestamp }}: {{ log.event }}</li>
+    </ul>
+  </tr>
+</div>
