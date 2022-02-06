@@ -43,7 +43,11 @@
   </div>
 
   <br />
-  <button (click)="submit()" [disabled]="!name.valid || !email.valid">
+  <button
+    (click)="submit()"
+    (window:keydown.Enter)="submit()"
+    [disabled]="!name.valid || !email.valid"
+  >
     PLAY
   </button>
 </div>

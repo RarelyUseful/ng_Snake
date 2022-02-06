@@ -61,8 +61,15 @@ export class GameComponent implements OnInit {
         this.history.push({ timestamp: this.time, event: 'Game started' });
       }
       this.startTimer();
+
+      this._snake.actionStart();
     }
-    this._snake.actionStart();
+    if (this.isGameOver === true) {
+      this.isGameOver = false;
+      this.history.push({ timestamp: this.time, event: 'Game started' });
+      this.startTimer();
+      this._snake.actionStart();
+    }
   }
   public stopB() {
     if (this.isRunning) {
@@ -96,7 +103,7 @@ export class GameComponent implements OnInit {
     this._snake.actionLeft();
     this.history.push({ timestamp: this.time, event: 'input: LEFT' });
   }
-
+  
   public goBack() {
     this.pReady.emit(false);
     window.location.reload();
@@ -110,6 +117,7 @@ export class GameComponent implements OnInit {
   public onGameOver() {
     this.pauseTimer();
     this.isGameOver = true;
+    this.isRunning = false;
     this.history.push({ timestamp: this.time, event: 'Game over' });
 
     alert(
