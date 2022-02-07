@@ -73,17 +73,17 @@ ngx-snake {
   text-transform: none;
   background-image: radial-gradient(
     at center center,
-    rgb(28, 110, 164) 0%,
-    rgb(35, 136, 203) 27%,
-    rgb(20, 78, 117) 100%
+    rgb(28, 164, 110) 0%,
+    rgb(35, 203, 136) 27%,
+    rgb(20, 117, 78) 100%
   );
   box-shadow: rgb(0, 0, 0) 1px 1px 3px 1px;
-  border: 2px solid rgb(28, 110, 164);
+  border: 2px solid rgb(28, 164, 110); //firstClour
   display: inline-block;
 }
 .myButton:hover {
-  background: rgb(28, 110, 164);
+  background: rgb(28, 164, 110); //firstColour
 }
 .myButton:active {
-  background: rgb(20, 78, 117);
+  background: rgb(20, 117, 78); //thirdColour
 }

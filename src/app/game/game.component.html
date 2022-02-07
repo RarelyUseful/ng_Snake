@@ -100,7 +100,10 @@
   </button>
   <tr>
     <ul *ngIf="showHistory">
-      <li *ngFor="let log of history">{{ log.timestamp }}: {{ log.event }}</li>
+      <li *ngFor="let log of history">
+        {{ log.timestamp | number: "1.2-2" }}:
+        {{ log.event }}
+      </li>
     </ul>
   </tr>
 </div>

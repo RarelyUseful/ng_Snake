@@ -7,7 +7,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { NgxSnakeComponent } from 'ngx-snake';
-class Log {
+export class Log {
   timestamp: number;
   event: string;
 
@@ -22,7 +22,7 @@ class Log {
   styleUrls: ['./game.component.scss'],
 })
 export class GameComponent implements OnInit {
-  public darkMode = false;
+  public darkMode: boolean = false;
   @Input() playerName: string = '';
   @Output() pReady = new EventEmitter<boolean>();
   public score: number = 0;
@@ -33,12 +33,17 @@ export class GameComponent implements OnInit {
   public history: Array<Log> = [];
   public showHistory: boolean = false;
   toggleHistory() {
+    // might not be needed
     if (this.showHistory) {
       this.showHistory = false;
     } else this.showHistory = true;
   }
+
+  // public activeLogs: Map<string, number> = ['Game started', 1];
+
   startTimer() {
     if (this.isRunning === false) {
+      // Fixed: prevent multipe instances of timer
       this.isRunning = true;
       this.interval = setInterval(() => {
         this.counter++;
@@ -58,6 +63,7 @@ export class GameComponent implements OnInit {
   public startB() {
     if (this.isGameOver === false) {
       if (!this.isRunning) {
+        // Fixed: prevent multiple logging of "Game started"
         this.history.push({ timestamp: this.time, event: 'Game started' });
       }
       this.startTimer();
@@ -65,7 +71,9 @@ export class GameComponent implements OnInit {
       this._snake.actionStart();
     }
     if (this.isGameOver === true) {
+      // Fixed: after gameover when you press start - timer starts, but game is still frozen.
       this.isGameOver = false;
+      this.resetB();
       this.history.push({ timestamp: this.time, event: 'Game started' });
       this.startTimer();
       this._snake.actionStart();
@@ -73,6 +81,7 @@ export class GameComponent implements OnInit {
   }
   public stopB() {
     if (this.isRunning) {
+      // Fixed: prevent multiple logging of "Game stpped"
       this.history.push({ timestamp: this.time, event: 'Game stopped' });
     }
     this.pauseTimer();
@@ -88,22 +97,35 @@ export class GameComponent implements OnInit {
   }
 
   public upB() {
+    if (!this.isRunning) {
+      this.startB();
+    }
     this._snake.actionUp();
     this.history.push({ timestamp: this.time, event: 'input: UP' });
   }
   public rightB() {
+    if (!this.isRunning) {
+      this.startB();
+    }
+
     this._snake.actionRight();
     this.history.push({ timestamp: this.time, event: 'input: RIGHT' });
   }
   public downB() {
+    if (!this.isRunning) {
+      this.startB();
+    }
     this._snake.actionDown();
     this.history.push({ timestamp: this.time, event: 'input: DOWN' });
   }
   public leftB() {
+    if (!this.isRunning) {
+      this.startB();
+    }
     this._snake.actionLeft();
     this.history.push({ timestamp: this.time, event: 'input: LEFT' });
   }
-  
+
   public goBack() {
     this.pReady.emit(false);
     window.location.reload();
@@ -124,6 +146,5 @@ export class GameComponent implements OnInit {
       `\n Game over :( \n\n Your playtime: ${this.time} \n Your score: ${this.score}`
     );
   }
-
   ngOnInit(): void {}
 }
