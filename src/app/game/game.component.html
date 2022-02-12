@@ -14,7 +14,15 @@
     <td>
       <button class="myButton" (click)="startB()">Start</button>
     </td>
-    <td><button class="myButton" (click)="stopB()">Stop</button></td>
+    <td>
+      <button
+        class="myButton"
+        (window:keydown.Shift)="stopB()"
+        (click)="stopB()"
+      >
+        Stop
+      </button>
+    </td>
     <td>
       <button class="myButton" (click)="resetB()">Reset</button>
     </td>
@@ -91,19 +99,37 @@
     </td>
   </tr>
 </table>
-<div>
-  <button *ngIf="showHistory" class="LightTheme" (click)="toggleHistory()">
-    Hide game logs
-  </button>
-  <button *ngIf="!showHistory" class="DarkTheme" (click)="toggleHistory()">
-    Show game logs
-  </button>
-  <tr>
-    <ul *ngIf="showHistory">
-      <li *ngFor="let log of history">
-        {{ log.timestamp | number: "1.2-2" }}:
-        {{ log.event }}
-      </li>
-    </ul>
-  </tr>
-</div>
+<tr>
+  <td></td>
+</tr>
+<table class="controls">
+  <div>
+    <td colspan="3">
+      <button *ngIf="showHistory" class="LightTheme" (click)="toggleHistory()">
+        Hide game logs
+      </button>
+      <button *ngIf="!showHistory" class="DarkTheme" (click)="toggleHistory()">
+        Show game logs
+      </button>
+      <tr>
+        <ul *ngIf="showHistory">
+          <select [(ngModel)]="currentEvent" placeholder="All">
+            <option value="All">All</option>
+            <option
+              *ngFor="let item of history | uniqueEvents: history.length"
+              [value]="item"
+            >
+              {{ item }}
+            </option>
+          </select>
+          <li
+            *ngFor="let log of history | logpipe: currentEvent:history.length"
+          >
+            {{ log.timestamp | number: "1.2-2" }}:
+            {{ log.event }}
+          </li>
+        </ul>
+      </tr>
+    </td>
+  </div>
+</table>

@@ -4,7 +4,7 @@ import { Log } from './game/game.component';
   name: 'logpipe',
 })
 export class LogpipePipe implements PipeTransform {
-  transform(history: Array<Log>, event: string): Array<Log> {
+  transform(history: Array<Log>, event: string, ln: number): Array<Log> {
     if (event === 'All') {
       return history;
     }

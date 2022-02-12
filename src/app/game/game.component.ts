@@ -32,14 +32,13 @@ export class GameComponent implements OnInit {
   public time: number = 0;
   public history: Array<Log> = [];
   public showHistory: boolean = false;
+  public currentEvent: string = 'All';
   toggleHistory() {
     // might not be needed
     if (this.showHistory) {
       this.showHistory = false;
     } else this.showHistory = true;
   }
-
-  // public activeLogs: Map<string, number> = ['Game started', 1];
 
   startTimer() {
     if (this.isRunning === false) {
@@ -75,7 +74,12 @@ export class GameComponent implements OnInit {
       this.isGameOver = false;
       this.resetB();
       this.history.push({ timestamp: this.time, event: 'Game started' });
-      this.startTimer();
+      // 2nd way to make pipe aware of changes in var history:
+      // this.history = [
+      //   ...this.history,
+      //   { timestamp: this.time, event: 'Game started' }
+      // ]
+      // this.startTimer();
       this._snake.actionStart();
     }
   }

@@ -7,9 +7,10 @@ import { NgxSnakeModule } from 'ngx-snake';
 import { IntroComponent } from './intro/intro.component';
 import { GameComponent } from './game/game.component';
 import { LogpipePipe } from './logpipe.pipe';
+import { UniqueEventsPipe } from './unique-events.pipe';
 
 @NgModule({
-  declarations: [AppComponent, IntroComponent, GameComponent, LogpipePipe],
+  declarations: [AppComponent, IntroComponent, GameComponent, LogpipePipe, UniqueEventsPipe],
   imports: [BrowserModule, NgxSnakeModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],

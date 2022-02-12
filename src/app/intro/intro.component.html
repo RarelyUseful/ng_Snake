@@ -8,6 +8,7 @@
 </header>
 <div>
   <h3>Please enter your credentials.</h3>
+
   <input
     pattern="^[a-zA-Z0-9_.+-]+$"
     required
@@ -45,7 +46,7 @@
   <br />
   <button
     (click)="submit()"
-    (window:keydown.Enter)="submit()"
+    (window:keydown.Enter)="name.valid && email.valid && submit()"
     [disabled]="!name.valid || !email.valid"
   >
     PLAY
