@@ -113,10 +113,12 @@ ngx-snake {
 }
 .myButtonSq {
   color: rgb(255, 255, 255);
-  font-size: 20px;
-  min-width: 50px;
+  font-size: 18px;
+  min-width: 70px;
+  max-width: 70px;
   min-height: 50px;
-  padding: 8px;
+  max-height: 50px;
+  padding: 2px;
   border-radius: 0px;
   font-family: Georgia, serif;
   font-weight: 500;
@@ -132,9 +134,9 @@ ngx-snake {
   border: 2px solid rgb(28, 164, 110); //firstColour
   display: inline-block;
 }
-.myButton:hover {
+.myButtonSq:hover {
   background: rgb(28, 164, 110); //firstColour
 }
-.myButton:active {
+.myButtonSq:active {
   background: rgb(20, 117, 78); //thirdColour
 }
