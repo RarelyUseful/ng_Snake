@@ -1,5 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-/* You can add global styles to this file, and also import other style files */
 
 html,
 body {
@@ -25,39 +24,64 @@ ngx-snake {
     }
   }
 }
-.DarkTheme {
-  background-color: rgb(25, 25, 25);
-  color: aliceblue;
-  body {
-    background: rgb(25, 25, 25);
-  }
-  ngx-snake {
-    ngx-snake-tile {
-      background: rgb(255, 255, 255);
-      &.free {
-        div {
-          background: rgb(255, 255, 255);
-        }
-      }
-    }
-  }
+.container {
+  display: grid;
+  grid-template-columns: 3.1fr 2.22fr 2.5fr;
+  grid-template-rows: 1fr 0.15fr;
+  gap: 1px 1px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "gamehere controlshere logshere"
+    "buttonshere buttonshere buttonshere";
 }
-.LightTheme {
-  background-color: rgb(255, 255, 255);
-  color: black;
-  body {
-    background: rgb(255, 255, 255);
-  }
-  ngx-snake {
-    ngx-snake-tile {
-      background: rgb(255, 255, 255);
-      &.free {
-        div {
-          background: rgb(255, 255, 255);
-        }
-      }
-    }
-  }
+
+.gamehere {
+  display: inline-block;
+  width: 310px;
+  height: 301px;
+  //background-color: black;
+  grid-area: gamehere;
+}
+
+.logshere {
+  display: block;
+  width: 250px;
+  height: 301px;
+  color: bisque;
+  text-align: left;
+  overflow: auto;
+  background-color: transparent;
+  background-image: url("./assets/woman2.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  grid-area: logshere;
+}
+
+.controlshere {
+  display: grid;
+  grid-template-columns: 74px 74px 74px;
+  grid-template-rows: 79px 74px 74px 74px;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  justify-items: center;
+  align-items: center;
+  grid-template-areas:
+    ". . ."
+    ". . ."
+    ". . ."
+    ". . .";
+  grid-area: controlshere;
+  background-color: transparent;
+  background-image: url("./assets/cat2.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.buttonshere {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  grid-area: buttonshere;
 }
 
 .myButton {
@@ -78,7 +102,34 @@ ngx-snake {
     rgb(20, 117, 78) 100%
   );
   box-shadow: rgb(0, 0, 0) 1px 1px 3px 1px;
-  border: 2px solid rgb(28, 164, 110); //firstClour
+  border: 2px solid rgb(28, 164, 110); //firstColour
+  display: inline-block;
+}
+.myButton:hover {
+  background: rgb(28, 164, 110); //firstColour
+}
+.myButton:active {
+  background: rgb(20, 117, 78); //thirdColour
+}
+.myButtonSq {
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+  min-width: 50px;
+  min-height: 50px;
+  padding: 8px;
+  border-radius: 0px;
+  font-family: Georgia, serif;
+  font-weight: 500;
+  text-decoration: none;
+  text-transform: none;
+  background-image: radial-gradient(
+    at center center,
+    rgb(28, 164, 110) 0%,
+    rgb(35, 203, 136) 27%,
+    rgb(20, 117, 78) 100%
+  );
+  box-shadow: rgb(0, 0, 0) 1px 1px 3px 1px;
+  border: 2px solid rgb(28, 164, 110); //firstColour
   display: inline-block;
 }
 .myButton:hover {

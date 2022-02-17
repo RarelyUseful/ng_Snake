@@ -1,135 +1,99 @@
 <header>
-  <h1>Welcome {{ playerName }}.</h1>
-  <h3>
+  <h1>Good luck {{ playerName }}!</h1>
+  <h2>
     <div *ngIf="isRunning">Playing...</div>
     <div *ngIf="!isRunning">Game Paused</div>
     Playtime: {{ time | number: "1.2-2" }} <br />Score: {{ score }}
-  </h3>
+  </h2>
 </header>
 
-<ngx-snake #game (foodEaten)="onGrow()" (gameOver)="onGameOver()"></ngx-snake>
-
-<table class="controls">
-  <tr>
-    <td>
-      <button class="myButton" (click)="startB()">Start</button>
-    </td>
-    <td>
-      <button
-        class="myButton"
-        (window:keydown.Shift)="stopB()"
-        (click)="stopB()"
-      >
-        Stop
-      </button>
-    </td>
-    <td>
-      <button class="myButton" (click)="resetB()">Reset</button>
-    </td>
-    <td></td>
-  </tr>
-
-  <tr>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td>
-      <button class="myButton" (click)="upB()" (window:keydown.arrowup)="upB()">
-        &#8657;
-      </button>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <button
-        class="myButton"
-        (click)="leftB()"
-        (window:keydown.arrowleft)="leftB()"
-      >
-        &#8656;
-      </button>
-    </td>
-    <td></td>
-    <td>
-      <button
-        class="myButton"
-        (click)="rightB()"
-        (window:keydown.arrowright)="rightB()"
-      >
-        &#8658;
-      </button>
-    </td>
-  </tr>
-  <tr>
-    <td></td>
-    <td>
-      <button
-        class="myButton"
-        (click)="downB()"
-        (window:keydown.arrowdown)="downB()"
-      >
-        &#8659;
-      </button>
-    </td>
-  </tr>
-
-  <tr style="height: 20px">
-    <td></td>
-  </tr>
-  <tr>
-    <td colspan="3">
-      <button *ngIf="!darkMode" class="DarkTheme" (click)="darkMode = true">
-        Switch to DarkTheme
-      </button>
-      <button *ngIf="darkMode" class="LightTheme" (click)="darkMode = false">
-        Just kidding, lol xD
-      </button>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="3">
-      <button class="DarkTheme" (click)="goBack()">Back do login</button>
-    </td>
-  </tr>
-</table>
-<tr>
-  <td></td>
-</tr>
-<table class="controls">
-  <div>
-    <td colspan="3">
-      <button *ngIf="showHistory" class="LightTheme" (click)="toggleHistory()">
-        Hide game logs
-      </button>
-      <button *ngIf="!showHistory" class="DarkTheme" (click)="toggleHistory()">
-        Show game logs
-      </button>
-      <tr>
-        <ul *ngIf="showHistory">
-          <select [(ngModel)]="currentEvent" placeholder="All">
-            <option value="All">All</option>
-            <option
-              *ngFor="let item of history | uniqueEvents: history.length"
-              [value]="item"
-            >
-              {{ item }}
-            </option>
-          </select>
-          <li
-            *ngFor="let log of history | logpipe: currentEvent:history.length"
-          >
-            {{ log.timestamp | number: "1.2-2" }}:
-            {{ log.event }}
-          </li>
-        </ul>
-      </tr>
-    </td>
+<div class="container">
+  <div class="gamehere">
+    <ngx-snake
+      #game
+      (foodEaten)="onGrow()"
+      (gameOver)="onGameOver()"
+    ></ngx-snake>
   </div>
-</table>
+  <div class="controlshere">
+    <button class="myButtonSq" (click)="startB()">Start</button>
+
+    <button
+      class="myButtonSq"
+      (window:keydown.Shift)="stopB()"
+      (click)="stopB()"
+    >
+      Stop
+    </button>
+
+    <button class="myButtonSq" (click)="resetB()">Reset</button>
+
+    <td></td>
+    <button class="myButton" (click)="upB()" (window:keydown.arrowup)="upB()">
+      &#8657;
+    </button>
+    <td></td>
+    <button
+      class="myButton"
+      (click)="leftB()"
+      (window:keydown.arrowleft)="leftB()"
+    >
+      &#8656;
+    </button>
+    <td></td>
+    <button
+      class="myButton"
+      (click)="rightB()"
+      (window:keydown.arrowright)="rightB()"
+    >
+      &#8658;
+    </button>
+    <td></td>
+    <button
+      class="myButton"
+      (click)="downB()"
+      (window:keydown.arrowdown)="downB()"
+    >
+      &#8659;
+    </button>
+    <td></td>
+  </div>
+  <div class="logshere">
+    <button *ngIf="showHistory" class="LightTheme" (click)="toggleHistory()">
+      Hide game logs
+    </button>
+    <button *ngIf="!showHistory" class="DarkTheme" (click)="toggleHistory()">
+      Show game logs
+    </button>
+    <br />
+    <select *ngIf="showHistory" [(ngModel)]="currentEvent" placeholder="All">
+      <option value="All">All</option>
+      <option
+        *ngFor="let item of history | uniqueEvents: history.length"
+        [value]="item"
+      >
+        {{ item }}
+      </option>
+    </select>
+    <ul *ngIf="showHistory">
+      <li
+        *ngFor="
+          let log of history | logpipe: currentEvent:history.length;
+          let i = index
+        "
+      >
+        {{ log.timestamp | number: "1.2-2" }}
+        {{ log.event }}
+      </li>
+    </ul>
+  </div>
+  <div class="buttonshere">
+    <button *ngIf="!darkMode" class="DarkTheme" (click)="darkMode = true">
+      Switch to DarkTheme
+    </button>
+    <button *ngIf="darkMode" class="LightTheme" (click)="darkMode = false">
+      Just kidding, lol xD
+    </button>
+    <button class="DarkTheme" (click)="goBack()">Back do login</button>
+  </div>
+</div>

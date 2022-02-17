@@ -79,7 +79,7 @@ export class GameComponent implements OnInit {
       //   ...this.history,
       //   { timestamp: this.time, event: 'Game started' }
       // ]
-      // this.startTimer();
+      this.startTimer();
       this._snake.actionStart();
     }
   }
@@ -105,7 +105,7 @@ export class GameComponent implements OnInit {
       this.startB();
     }
     this._snake.actionUp();
-    this.history.push({ timestamp: this.time, event: 'input: UP' });
+    this.history.push({ timestamp: this.time, event: 'input UP' });
   }
   public rightB() {
     if (!this.isRunning) {
@@ -113,21 +113,21 @@ export class GameComponent implements OnInit {
     }
 
     this._snake.actionRight();
-    this.history.push({ timestamp: this.time, event: 'input: RIGHT' });
+    this.history.push({ timestamp: this.time, event: 'input RIGHT' });
   }
   public downB() {
     if (!this.isRunning) {
       this.startB();
     }
     this._snake.actionDown();
-    this.history.push({ timestamp: this.time, event: 'input: DOWN' });
+    this.history.push({ timestamp: this.time, event: 'input DOWN' });
   }
   public leftB() {
     if (!this.isRunning) {
       this.startB();
     }
     this._snake.actionLeft();
-    this.history.push({ timestamp: this.time, event: 'input: LEFT' });
+    this.history.push({ timestamp: this.time, event: 'input LEFT' });
   }
 
   public goBack() {
