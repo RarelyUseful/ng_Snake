@@ -17,7 +17,7 @@ class Player {
 export class AppComponent {
   title = 'Snake';
 
-  public playerReady = true; // false unless debugging
+  public playerReady = false; // false unless debugging
   public playerName = '';
 }
 
