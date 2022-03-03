@@ -17,8 +17,8 @@ class Player {
 export class AppComponent {
   title = 'Snake';
 
-  public playerReady = false; // false unless debugging
-  public playerName = '';
+  public playerReady: boolean = false; // false unless debugging
+  public playerName: string = '';
 }
 
 /*
