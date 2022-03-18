@@ -8,10 +8,26 @@ import { IntroComponent } from './intro/intro.component';
 import { GameComponent } from './game/game.component';
 import { LogpipePipe } from './logpipe.pipe';
 import { UniqueEventsPipe } from './unique-events.pipe';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [AppComponent, IntroComponent, GameComponent, LogpipePipe, UniqueEventsPipe],
-  imports: [BrowserModule, NgxSnakeModule, FormsModule],
+  declarations: [
+    AppComponent,
+    IntroComponent,
+    GameComponent,
+    LogpipePipe,
+    UniqueEventsPipe,
+  ],
+  imports: [
+    BrowserModule,
+    NgxSnakeModule,
+    FormsModule,
+    RouterModule.forRoot([
+      { path: 'intro', component: IntroComponent },
+      { path: 'game', component: GameComponent },
+      { path: '**', redirectTo: '/intro' },
+    ]),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

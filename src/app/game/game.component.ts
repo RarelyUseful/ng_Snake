@@ -7,6 +7,9 @@ import {
   ViewChild,
 } from '@angular/core';
 import { NgxSnakeComponent } from 'ngx-snake';
+import { Router } from '@angular/router';
+import { PlayerinfoService } from '../playerinfo.service';
+
 export class Log {
   timestamp: number;
   event: string;
@@ -23,8 +26,8 @@ export class Log {
 })
 export class GameComponent implements OnInit {
   public darkMode: boolean = false;
-  @Input() playerName: string = '';
-  @Output() pReady = new EventEmitter<boolean>();
+  public playerName = this._playerinfo.getName();
+  // @Output() pReady = new EventEmitter<boolean>();
   public score: number = 0;
   public isRunning: boolean = false;
   counter: number = 0;
@@ -35,9 +38,7 @@ export class GameComponent implements OnInit {
   public currentEvent: string = 'All';
   toggleHistory() {
     // might not be needed
-    if (this.showHistory) {
-      this.showHistory = false;
-    } else this.showHistory = true;
+    this.showHistory = !this.showHistory;
   }
 
   startTimer() {
@@ -54,7 +55,11 @@ export class GameComponent implements OnInit {
     this.isRunning = false;
     clearInterval(this.interval);
   }
-  constructor() {}
+  constructor(private _router: Router, private _playerinfo: PlayerinfoService) {
+    if (!this._playerinfo.isReady) {
+      this._router.navigate(['/intro']);
+    }
+  }
 
   @ViewChild(NgxSnakeComponent)
   private _snake!: NgxSnakeComponent;
@@ -131,8 +136,9 @@ export class GameComponent implements OnInit {
   }
 
   public goBack() {
-    this.pReady.emit(false);
-    window.location.reload();
+    // this.pReady.emit(false);
+    //window.location.reload();
+    this._router.navigate(['/intro']);
   }
   public onGrow() {
     console.log('grow');
@@ -150,5 +156,6 @@ export class GameComponent implements OnInit {
       `\n Game over :( \n\n Your playtime: ${this.time} \n Your score: ${this.score}`
     );
   }
+
   ngOnInit(): void {}
 }

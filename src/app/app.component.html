@@ -1,4 +1,4 @@
-<div *ngIf="!playerReady">
+<!-- <div *ngIf="!playerReady">
   <app-intro
     (pReady)="playerReady = $event"
     (pName)="playerName = $event"
@@ -9,4 +9,5 @@
     [playerName]="playerName"
     (pReady)="playerReady = $event"
   ></app-game>
-</div>
+</div> -->
+<router-outlet></router-outlet>
