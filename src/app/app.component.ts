@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 
-class Player {
-  name: string;
-  email: string;
+// class Player {
+//   name: string;
+//   email: string;
 
-  constructor(name: string, email: string) {
-    this.name = name;
-    this.email = email;
-  }
-}
+//   constructor(name: string, email: string) {
+//     this.name = name;
+//     this.email = email;
+//   }
+// }
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -17,8 +17,8 @@ class Player {
 export class AppComponent {
   title = 'Snake';
 
-  public playerReady: boolean = false; // false unless debugging
-  public playerName: string = '';
+  //public playerReady: boolean = true; // false unless debugging
+  //public playerName: string = '';
 }
 
 /*

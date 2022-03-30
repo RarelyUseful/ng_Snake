@@ -1,3 +1,4 @@
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {
   Component,
   OnInit,
@@ -34,8 +35,8 @@ export class GameComponent implements OnInit {
   interval: any;
   public time: number = 0;
   public history: Array<Log> = [];
-  public showHistory: boolean = false;
   public currentEvent: string = 'All';
+  public showHistory: boolean = false;
   toggleHistory() {
     // might not be needed
     this.showHistory = !this.showHistory;
@@ -156,6 +157,11 @@ export class GameComponent implements OnInit {
       `\n Game over :( \n\n Your playtime: ${this.time} \n Your score: ${this.score}`
     );
   }
-
+  openModal() {
+    this.darkMode = true;
+    this._router.navigate(['/scoreboard']);
+    // const modalRef = this.modalService.open(NgbdModalContent);
+    // modalRef.componentInstance.name = 'World';
+  }
   ngOnInit(): void {}
 }

@@ -7,7 +7,7 @@ export class PlayerinfoService {
   constructor() {}
   _playername!: string;
   _playeremail!: string;
-  _playerready: boolean = false;
+  _playerready: boolean = true; // FALSE unless debugging
 
   public setName(name: string): void {
     this._playername = name;

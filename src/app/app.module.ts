@@ -9,6 +9,8 @@ import { GameComponent } from './game/game.component';
 import { LogpipePipe } from './logpipe.pipe';
 import { UniqueEventsPipe } from './unique-events.pipe';
 import { RouterModule } from '@angular/router';
+import { ScoreboardComponent } from './scoreboard/scoreboard.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,7 @@ import { RouterModule } from '@angular/router';
     GameComponent,
     LogpipePipe,
     UniqueEventsPipe,
+    ScoreboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,8 +28,10 @@ import { RouterModule } from '@angular/router';
     RouterModule.forRoot([
       { path: 'intro', component: IntroComponent },
       { path: 'game', component: GameComponent },
+      { path: 'scoreboard', component: ScoreboardComponent },
       { path: '**', redirectTo: '/intro' },
     ]),
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

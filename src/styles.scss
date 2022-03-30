@@ -140,3 +140,6 @@ ngx-snake {
 .myButtonSq:active {
   background: rgb(20, 117, 78); //thirdColour
 }
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
