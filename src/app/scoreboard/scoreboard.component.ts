@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PlayerinfoService } from '../playerinfo.service';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-scoreboard',
@@ -8,7 +9,11 @@ import { PlayerinfoService } from '../playerinfo.service';
   styleUrls: ['./scoreboard.component.scss'],
 })
 export class ScoreboardComponent implements OnInit {
-  constructor(private _router: Router, private _playerinfo: PlayerinfoService) {
+  constructor(
+    private _router: Router,
+    private _playerinfo: PlayerinfoService,
+    public activeModal: NgbActiveModal
+  ) {
     if (!this._playerinfo.isReady) {
       this._router.navigate(['/intro']);
     }

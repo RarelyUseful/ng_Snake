@@ -1,4 +1,8 @@
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {
+  NgbActiveModal,
+  NgbModal,
+  ModalDismissReasons,
+} from '@ng-bootstrap/ng-bootstrap';
 import {
   Component,
   OnInit,
@@ -10,6 +14,7 @@ import {
 import { NgxSnakeComponent } from 'ngx-snake';
 import { Router } from '@angular/router';
 import { PlayerinfoService } from '../playerinfo.service';
+import { ScoreboardComponent } from '../scoreboard/scoreboard.component';
 
 export class Log {
   timestamp: number;
@@ -56,7 +61,11 @@ export class GameComponent implements OnInit {
     this.isRunning = false;
     clearInterval(this.interval);
   }
-  constructor(private _router: Router, private _playerinfo: PlayerinfoService) {
+  constructor(
+    private _router: Router,
+    private _playerinfo: PlayerinfoService,
+    public modalService: NgbModal
+  ) {
     if (!this._playerinfo.isReady) {
       this._router.navigate(['/intro']);
     }
@@ -158,10 +167,7 @@ export class GameComponent implements OnInit {
     );
   }
   openModal() {
-    this.darkMode = true;
-    this._router.navigate(['/scoreboard']);
-    // const modalRef = this.modalService.open(NgbdModalContent);
-    // modalRef.componentInstance.name = 'World';
+    this.modalService.open(ScoreboardComponent);
   }
   ngOnInit(): void {}
 }

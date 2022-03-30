@@ -1,2 +1,21 @@
-<p>scoreboard works!</p>
-<button class="DarkTheme" (click)="goBack()">Back do game</button>
+<div class="modal-header">
+  <h4 class="modal-title">Scoreboard</h4>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="activeModal.dismiss('Cross click')"
+  ></button>
+</div>
+<div class="modal-body">
+  <p>Scoreboard will be here!</p>
+</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-outline-dark"
+    (click)="activeModal.close('Close click')"
+  >
+    Close
+  </button>
+</div>
