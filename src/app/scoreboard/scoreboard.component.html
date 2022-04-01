@@ -8,11 +8,10 @@
   ></button>
 </div>
 <div class="modal-body">
-  <p>Scoreboard will be here!</p>
   <div>
-    *Player : Score*
-    <br />
-    {{ scores }}
+    <ul *ngFor="let player of data">
+      <li>{{ player.name }} : {{ player.score }}</li>
+    </ul>
   </div>
 </div>
 <div class="modal-footer">

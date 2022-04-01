@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -7,9 +7,12 @@ import { Observable } from 'rxjs';
 })
 export class TodosService {
   constructor(private _http: HttpClient) {}
+
   loadScore(): Observable<JSON> {
     const URL = 'http://scores.chrum.it/scores/snake';
+    const headers = new HttpHeaders({ accept: 'application/json' });
     const Options = {
+      headers,
       // params: {
       //   'auth-token': '1234',
       // },

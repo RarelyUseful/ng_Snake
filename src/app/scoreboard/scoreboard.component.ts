@@ -11,15 +11,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./scoreboard.component.scss'],
 })
 export class ScoreboardComponent implements OnInit {
-  public data: any = [
-    {
-      name: 'Testscr',
-      score: 10,
-    },
-  ];
-  public scores = this.data.map((e: any) => {
-    return e.name + ' : ' + e.score;
-  });
+  public data: any = [];
 
   constructor(
     private _router: Router,
@@ -31,8 +23,8 @@ export class ScoreboardComponent implements OnInit {
       this._router.navigate(['/intro']);
     }
     this._todos.loadScore().subscribe((result) => {
-      this.data.push(result);
-      console.log(result);
+      this.data = result;
+      //console.log(result);
     });
   }
   public goBack() {
