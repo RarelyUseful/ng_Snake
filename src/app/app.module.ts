@@ -11,6 +11,7 @@ import { UniqueEventsPipe } from './unique-events.pipe';
 import { RouterModule } from '@angular/router';
 import { ScoreboardComponent } from './scoreboard/scoreboard.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
       { path: '**', redirectTo: '/intro' },
     ]),
     NgbModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
