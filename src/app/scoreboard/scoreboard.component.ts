@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PlayerinfoService } from '../playerinfo.service';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { TodosService } from '../todos.service';
+import { TodosService, ScoresFromApi } from '../todos.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 })
 export class ScoreboardComponent implements OnInit {
   public data: any = [];
-
+  public dataS: any;
   constructor(
     private _router: Router,
     private _playerinfo: PlayerinfoService,
@@ -24,6 +24,10 @@ export class ScoreboardComponent implements OnInit {
     }
     this._todos.loadScore().subscribe((result) => {
       this.data = result;
+
+      //this sorting should go to pipe
+      this.dataS = this.data.sort((a: any, b: any) => b.score - a.score);
+
       //console.log(result);
     });
   }

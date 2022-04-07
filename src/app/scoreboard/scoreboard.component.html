@@ -8,11 +8,25 @@
   ></button>
 </div>
 <div class="modal-body">
-  <div>
-    <ul *ngFor="let player of data">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Player Name</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let player of dataS">
+        <td>{{ player.name }}</td>
+        <td>{{ player.score }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- <div>
+    <ul *ngFor="let player of data | slice: 4">
       <li>{{ player.name }} : {{ player.score }}</li>
     </ul>
-  </div>
+  </div> -->
 </div>
 <div class="modal-footer">
   <button
