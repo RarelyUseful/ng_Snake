@@ -17,12 +17,13 @@ export class IntroComponent implements OnInit {
   ngOnInit(): void {}
   public playerName: string = '';
   public playerEmail: string = '';
+  public playerToken: string = '';
   //public isOK: boolean = false;
 
   public submit() {
     //this.pReady.emit(true);
     //this.pName.emit(this.playerName);
-    this._playerinfo.setEmail(this.playerEmail);
+    //this._playerinfo.setEmail(this.playerEmail);
     this._playerinfo.setName(this.playerName);
     this._playerinfo.setReady(true);
     this._router.navigate(['/game']);

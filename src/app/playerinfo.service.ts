@@ -8,6 +8,7 @@ export class PlayerinfoService {
   _playername!: string;
   _playeremail!: string;
   _playerready: boolean = true; // FALSE unless debugging
+  _playertoken!: string;
 
   public setName(name: string): void {
     this._playername = name;
@@ -18,13 +19,19 @@ export class PlayerinfoService {
   public setReady(bool: boolean): void {
     this._playerready = bool;
   }
+  public setToken(token: string): void {
+    this._playertoken = token;
+  }
   public getName(): string {
     return this._playername;
   }
   public getEmail(): string {
     return this._playeremail;
   }
-  public get isReady() {
+  public isReady() {
     return this._playerready;
+  }
+  public getToken(): string {
+    return this._playertoken;
   }
 }

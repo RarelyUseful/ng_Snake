@@ -29,26 +29,20 @@
   </div>
   <div>
     <input
-      pattern="(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
       required
-      minlength="6"
-      [(ngModel)]="playerEmail"
-      placeholder="Email"
-      #email="ngModel"
+      [(ngModel)]="playerToken"
+      placeholder="Token"
+      #token="ngModel"
     />
-    <div *ngIf="email.invalid && email.touched" class="alert">
-      <div *ngIf="email.errors?.['required']">Email is required.</div>
-      <div *ngIf="email.errors?.['minlength']">
-        Email must be at least 6 characters long.
-      </div>
-      <div *ngIf="email.errors?.['pattern']">Email must be viable.</div>
+    <div *ngIf="token.invalid && token.touched" class="alert">
+      <div *ngIf="token.errors?.['required']">Token is required.</div>
     </div>
   </div>
   <br />
   <button
     (click)="submit()"
-    (window:keydown.Enter)="name.valid && email.valid && submit()"
-    [disabled]="!name.valid || !email.valid"
+    (window:keydown.Enter)="name.valid && token.valid && submit()"
+    [disabled]="!name.valid || !token.valid"
   >
     PLAY
   </button>

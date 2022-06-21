@@ -26,13 +26,13 @@ Reading and displaying highscores
   x  List with entries (name - score pairs)
   x  show only top 10 entries
   x  List sorting
-    allow sorting by: score asc/desc
+  x  allow sorting by: score asc/desc
 
 Authentication input
     (Intro page form) 
-    Add token input ( student ID ) 
-    remove email from the form
-    add token input field (text entry, just required, no special validations)
+  x  Add token input ( student ID ) 
+  x  remove email from the form
+  x  add token input field (text entry, just required, no special validations)
     Upon form submission validate entered token
     POST /check-token
 My score

@@ -31,7 +31,7 @@ export class Log {
   styleUrls: ['./game.component.scss'],
 })
 export class GameComponent implements OnInit {
-  public darkMode: boolean = false;
+  //public darkMode: boolean = false;
   public playerName = this._playerinfo.getName();
   // @Output() pReady = new EventEmitter<boolean>();
   public score: number = 0;
