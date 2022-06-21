@@ -12,7 +12,9 @@ import { Observable } from 'rxjs';
 })
 export class ScoreboardComponent implements OnInit {
   public data: any = [];
-  public dataSorted: any[] = [];
+  public dataSortedDesc: any[] = [];
+  public dataSortedAsc: any[] = [];
+  public showBestScores: boolean = true;
   constructor(
     private _router: Router,
     private _playerinfo: PlayerinfoService,
@@ -24,10 +26,12 @@ export class ScoreboardComponent implements OnInit {
     }
     this._todos.loadScore().subscribe((result) => {
       this.data = result;
-
-      //this sorting should go to pipe
-      this.dataSorted = this.data.sort((a: any, b: any) => b.score - a.score);
-
+      this.dataSortedDesc = this.data.sort(
+        (a: any, b: any) => b.score - a.score
+      );
+      this.dataSortedAsc = this.data
+        .slice()
+        .sort((a: any, b: any) => a.score - b.score);
       //console.log(result);
     });
   }

@@ -1,5 +1,6 @@
 <div class="modal-header">
   <h4 class="modal-title">Scoreboard</h4>
+
   <button
     type="button"
     class="btn-close"
@@ -7,6 +8,9 @@
     (click)="activeModal.dismiss('Cross click')"
   ></button>
 </div>
+<button type="button" (click)="showBestScores = !showBestScores">
+  {{ showBestScores ? "Show Lowest Scores" : "Show Highest Scores" }}
+</button>
 <div class="modal-body">
   <table class="table table-striped">
     <thead>
@@ -15,8 +19,14 @@
         <th>Score</th>
       </tr>
     </thead>
-    <tbody>
-      <tr *ngFor="let player of dataSorted | slice: 0:10; let i = index">
+    <tbody *ngIf="showBestScores">
+      <tr *ngFor="let player of dataSortedDesc | slice: 0:10">
+        <td>{{ player.name }}</td>
+        <td>{{ player.score }}</td>
+      </tr>
+    </tbody>
+    <tbody *ngIf="!showBestScores">
+      <tr *ngFor="let player of dataSortedAsc | slice: 0:10">
         <td>{{ player.name }}</td>
         <td>{{ player.score }}</td>
       </tr>
