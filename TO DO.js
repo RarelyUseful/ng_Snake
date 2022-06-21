@@ -18,14 +18,14 @@ TO DO:
 
     ASC/DSC order of logs !
 
-    
+
 Reading and displaying highscores
   x  Read current highscores
   x  GET /scores/{game}
   x  Display highscores (component):
   x  List with entries (name - score pairs)
   x  show only top 10 entries
-    List sorting
+  x  List sorting
     allow sorting by: score asc/desc
 
 Authentication input

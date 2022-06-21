@@ -16,7 +16,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let player of dataS">
+      <tr *ngFor="let player of dataSorted | slice: 0:10; let i = index">
         <td>{{ player.name }}</td>
         <td>{{ player.score }}</td>
       </tr>
