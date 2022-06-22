@@ -7,7 +7,7 @@ export class PlayerinfoService {
   constructor() {}
   _playername!: string;
   _playeremail!: string;
-  _playerready: boolean = true; // FALSE unless debugging
+  _playerready: boolean = false; // FALSE unless debugging
   _playertoken!: string;
 
   public setName(name: string): void {

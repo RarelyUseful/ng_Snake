@@ -6,6 +6,9 @@ export interface ScoresFromApi {
   name: string;
   score: number;
 }
+export interface Authorization {
+  success: boolean;
+}
 @Injectable({
   providedIn: 'root',
 })
@@ -17,19 +20,17 @@ export class TodosService {
     const headers = new HttpHeaders({ accept: 'application/json' });
     const Options = {
       headers,
-      // params: {
-      //   'auth-token': '1234',
-      // },
     };
     return this._http.get<ScoresFromApi>(URL, Options);
   }
-  checkUser(token: number): Observable<boolean> {
+  checkUser(token: string): Observable<Authorization> {
     const URL = 'http://scores.chrum.it/check-token';
-    const Options = {
-      params: {
-        'auth-token': token,
-      },
-    };
-    return this._http.get<boolean>(URL, Options);
+    const headers = new HttpHeaders({
+      accept: 'application/json',
+      'Content-Type': 'applicaion/json',
+    });
+    const body = { 'auth-token': token };
+    const Options = {};
+    return this._http.post<Authorization>(URL, body, Options);
   }
 }

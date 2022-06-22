@@ -33,8 +33,8 @@ Authentication input
   x  Add token input ( student ID ) 
   x  remove email from the form
   x  add token input field (text entry, just required, no special validations)
-    Upon form submission validate entered token
-    POST /check-token
+  x  Upon form submission validate entered token
+  x  POST /check-token
 My score
   On game finished
     submit player score and name (POST /scores)
