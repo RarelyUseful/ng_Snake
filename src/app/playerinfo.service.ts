@@ -28,7 +28,7 @@ export class PlayerinfoService {
   public getEmail(): string {
     return this._playeremail;
   }
-  public isReady() {
+  public getisReady() {
     return this._playerready;
   }
   public getToken(): string {

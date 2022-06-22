@@ -15,6 +15,7 @@ import { NgxSnakeComponent } from 'ngx-snake';
 import { Router } from '@angular/router';
 import { PlayerinfoService } from '../playerinfo.service';
 import { ScoreboardComponent } from '../scoreboard/scoreboard.component';
+import { TodosService, ScoresPosting } from '../todos.service';
 
 export class Log {
   timestamp: number;
@@ -33,9 +34,11 @@ export class Log {
 export class GameComponent implements OnInit {
   //public darkMode: boolean = false;
   public playerName = this._playerinfo.getName();
-  // @Output() pReady = new EventEmitter<boolean>();
+
   public score: number = 0;
   public isRunning: boolean = false;
+  public isGameOver: boolean = false;
+
   counter: number = 0;
   interval: any;
   public time: number = 0;
@@ -64,9 +67,10 @@ export class GameComponent implements OnInit {
   constructor(
     private _router: Router,
     private _playerinfo: PlayerinfoService,
-    public modalService: NgbModal
+    public modalService: NgbModal,
+    private _todos: TodosService
   ) {
-    if (!this._playerinfo.isReady) {
+    if (!this._playerinfo.getisReady()) {
       this._router.navigate(['/intro']);
     }
   }
@@ -155,17 +159,26 @@ export class GameComponent implements OnInit {
     this.score++;
     this.history.push({ timestamp: this.time, event: 'Snake GROWS' });
   }
-  public isGameOver: boolean = false;
   public onGameOver() {
     this.pauseTimer();
     this.isGameOver = true;
     this.isRunning = false;
     this.history.push({ timestamp: this.time, event: 'Game over' });
+    this.runPostScore(this.playerName, this.score);
 
     alert(
       `\n Game over :( \n\n Your playtime: ${this.time} \n Your score: ${this.score}`
     );
   }
+
+  public runPostScore(name: string, playerscore: number) {
+    this._todos
+      .postScore(name, playerscore, this._playerinfo.getToken())
+      .subscribe((result: ScoresPosting) => {
+        console.log(result);
+      });
+  }
+
   openModal() {
     this.modalService.open(ScoreboardComponent);
   }

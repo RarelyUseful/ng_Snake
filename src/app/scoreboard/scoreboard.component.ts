@@ -21,7 +21,7 @@ export class ScoreboardComponent implements OnInit {
     public activeModal: NgbActiveModal,
     private _todos: TodosService
   ) {
-    if (!this._playerinfo.isReady) {
+    if (!this._playerinfo.getisReady()) {
       this._router.navigate(['/intro']);
     }
     this._todos.loadScore().subscribe((result) => {

@@ -29,6 +29,8 @@ export class IntroComponent implements OnInit {
       console.log(result);
       if (result.success) {
         this._playerinfo.setReady(true);
+        this._playerinfo.setToken(token);
+
         this._router.navigate(['/game']);
       } else alert('Wrong token');
     });

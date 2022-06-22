@@ -9,6 +9,12 @@ export interface ScoresFromApi {
 export interface Authorization {
   success: boolean;
 }
+export interface ScoresPosting {
+  name: string;
+  game: string;
+  score: number;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -27,10 +33,27 @@ export class TodosService {
     const URL = 'http://scores.chrum.it/check-token';
     const headers = new HttpHeaders({
       accept: 'application/json',
-      'Content-Type': 'applicaion/json',
     });
     const body = { 'auth-token': token };
-    const Options = {};
+    const Options = { headers };
     return this._http.post<Authorization>(URL, body, Options);
+  }
+  postScore(
+    playername: string,
+    playerscore: number,
+    token: string
+  ): Observable<ScoresPosting> {
+    const URL = 'http://scores.chrum.it/scores';
+    const headers = new HttpHeaders({
+      accept: 'application/json',
+      'auth-token': token,
+    });
+    const body = {
+      name: playername,
+      game: 'snake',
+      score: playerscore,
+    };
+    const Options = { headers };
+    return this._http.post<ScoresPosting>(URL, body, Options);
   }
 }
