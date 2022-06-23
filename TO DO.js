@@ -52,10 +52,10 @@ My score
                   Remember to cleanup
 
 Parameters
-   Extend game route to accept parameter: 'colors'
+  x   Extend game route to accept parameter: 'colors'
    Intro page
-      Allow player to select color palette: normal, high contrast
-      Pass selected color palette through route parameter
+  x    Allow player to select color palette: normal, high contrast
+  x    Pass selected color palette through route parameter
    Game page
       Add support for 'high contrast' color palette
       Read route 'colors' param

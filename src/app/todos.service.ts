@@ -22,7 +22,7 @@ export class TodosService {
   constructor(private _http: HttpClient) {}
 
   loadScore(): Observable<ScoresFromApi> {
-    const URL = 'http://scores.chrum.it/scores/snake';
+    const URL = 'https://scores.chrum.it/scores/snake';
     const headers = new HttpHeaders({ accept: 'application/json' });
     const Options = {
       headers,
@@ -30,7 +30,7 @@ export class TodosService {
     return this._http.get<ScoresFromApi>(URL, Options);
   }
   checkUser(token: string): Observable<Authorization> {
-    const URL = 'http://scores.chrum.it/check-token';
+    const URL = 'https://scores.chrum.it/check-token';
     const headers = new HttpHeaders({
       accept: 'application/json',
     });
@@ -43,7 +43,7 @@ export class TodosService {
     playerscore: number,
     token: string
   ): Observable<ScoresPosting> {
-    const URL = 'http://scores.chrum.it/scores';
+    const URL = 'https://scores.chrum.it/scores';
     const headers = new HttpHeaders({
       accept: 'application/json',
       'auth-token': token,

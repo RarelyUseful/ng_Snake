@@ -27,10 +27,10 @@ import { HttpClientModule } from '@angular/common/http';
     NgxSnakeModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: 'intro', component: IntroComponent },
-      { path: 'game', component: GameComponent },
+      { path: 'intro/:color', component: IntroComponent },
+      { path: 'game/:color', component: GameComponent },
       { path: 'scoreboard', component: ScoreboardComponent },
-      { path: '**', redirectTo: '/intro' },
+      { path: '**', redirectTo: '/intro/normal' },
     ]),
     NgbModule,
     HttpClientModule,
