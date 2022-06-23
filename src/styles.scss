@@ -12,14 +12,42 @@ header {
   min-height: 100px;
   min-width: 100%;
   background-color: rgb(25, 25, 25);
-  color: azure;
+  color: rgb(240, 255, 255);
 }
 ngx-snake {
+  &.black-and-white {
+    ngx-snake-tile {
+      background: rgb(255, 255, 255);
+      &.free {
+        div {
+          background: rgb(255, 255, 255);
+        }
+      }
+
+      &.head,
+      &.tail,
+      &.food,
+      &.body {
+        div {
+          background: rgb(0, 0, 0);
+        }
+      }
+    }
+  }
   ngx-snake-tile {
     background: rgb(255, 255, 255);
     &.free {
       div {
         background: rgb(255, 255, 255);
+      }
+    }
+
+    &.head,
+    &.tail,
+    &.food,
+    &.body {
+      div {
+        background: rgb(0, 0, 0);
       }
     }
   }
@@ -142,4 +170,4 @@ ngx-snake {
 }
 
 /* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
