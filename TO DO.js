@@ -37,19 +37,44 @@ Authentication input
   x  POST /check-token
 My score
   On game finished
-    submit player score and name (POST /scores)
-    sign with auth token (auth-token header)
-    Display my scores list (component): 
+  x  submit player score and name (POST /scores)
+  x  sign with auth token (auth-token header)
+  Display my scores list (component): 
     filter data (only my entries)
     sorting by score asc/desc
     Update score lists every 30 seconds
 
-Scores refreshing - RxJS way
-    Use interval()
-    Chain with concatMap() or switchMap()
-    Allow enabling/disabling auto refreshing
-    - checkbox, variable and RxJS filter()
-    Remember to cleanup
+              Scores refreshing - RxJS way
+                  Use interval()
+                  Chain with concatMap() or switchMap()
+                  Allow enabling/disabling auto refreshing
+                  - checkbox, variable and RxJS filter()
+                  Remember to cleanup
+
+Parameters
+   Extend game route to accept parameter: 'colors'
+   Intro page
+      Allow player to select color palette: normal, high contrast
+      Pass selected color palette through route parameter
+   Game page
+      Add support for 'high contrast' color palette
+      Read route 'colors' param
+      Bind route param to game component ([] or [ngClass])
+    extra: allow color palette switching from game page (keep the url synced)
+Guards
+  Player data service modifications 
+    Should expose interface indicating whether there is a player data inside or not (flag, check(), whatever)
+    Visiting intro page should clear data stored in player data service
+  Guard creation  
+    ng generate service playerDataGuard
+    Inject player data service
+    Implement CanActivate interface
+    Use player data service in 'decision making process'
+      Player data NOT EMPTY: allow navigation
+      Player data EMPTY: redirect to intro page
+    Add created guard to game page route
+  Hint: player data service should use local storage for player data persisting
+
 
 Intro page - transition to reactive form
     Player name 

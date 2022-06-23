@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PlayerinfoService } from '../playerinfo.service';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
   templateUrl: './scoreboard.component.html',
   styleUrls: ['./scoreboard.component.scss'],
 })
-export class ScoreboardComponent implements OnInit {
+export class ScoreboardComponent implements OnInit, OnDestroy {
   public data: any = [];
   public dataSortedDesc: any[] = [];
   public dataSortedAsc: any[] = [];
@@ -41,5 +41,10 @@ export class ScoreboardComponent implements OnInit {
     this._router.navigate(['/game']);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log('Modal created');
+  }
+  ngOnDestroy(): void {
+    console.log('Modal destroyed');
+  }
 }
