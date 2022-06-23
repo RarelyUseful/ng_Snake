@@ -9,7 +9,8 @@ export class PlayerinfoService {
   _playeremail!: string;
   _playerready: boolean = false; // FALSE unless debugging
   _playertoken!: string;
-  _normalcolors: boolean = true;
+  // _color: string = 'normal'; // change it to read from local storage
+  _color!: string;
 
   public setName(name: string): void {
     this._playername = name;
@@ -20,8 +21,8 @@ export class PlayerinfoService {
   public setReady(bool: boolean): void {
     this._playerready = bool;
   }
-  public setNormalColors(bool: boolean): void {
-    this._normalcolors = bool;
+  public setColor(value: string): void {
+    this._color = value;
   }
   public setToken(token: string): void {
     this._playertoken = token;
@@ -32,13 +33,13 @@ export class PlayerinfoService {
   public getEmail(): string {
     return this._playeremail;
   }
-  public getisReady() {
+  public getisReady(): boolean {
     return this._playerready;
   }
   public getToken(): string {
     return this._playertoken;
   }
-  public getNormalColors() {
-    return this._normalcolors;
+  public getColor(): string {
+    return this._color;
   }
 }

@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Log } from './game/game.component';
+import { Log } from '../game/game.component';
 @Pipe({
   name: 'logpipe',
 })

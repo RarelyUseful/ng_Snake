@@ -12,10 +12,10 @@ import {
   ViewChild,
 } from '@angular/core';
 import { NgxSnakeComponent } from 'ngx-snake';
-import { Router } from '@angular/router';
-import { PlayerinfoService } from '../playerinfo.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { PlayerinfoService } from '../services/playerinfo.service';
 import { ScoreboardComponent } from '../scoreboard/scoreboard.component';
-import { TodosService, ScoresPosting } from '../todos.service';
+import { TodosService, ScoresPosting } from '../services/todos.service';
 
 export class Log {
   timestamp: number;
@@ -34,7 +34,7 @@ export class Log {
 export class GameComponent implements OnInit {
   //public darkMode: boolean = false;
   public playerName = this._playerinfo.getName();
-
+  public color = this._playerinfo.getColor();
   public score: number = 0;
   public isRunning: boolean = false;
   public isGameOver: boolean = false;
@@ -45,6 +45,24 @@ export class GameComponent implements OnInit {
   public history: Array<Log> = [];
   public currentEvent: string = 'All';
   public showHistory: boolean = false;
+  constructor(
+    private _router: Router,
+    private _playerinfo: PlayerinfoService,
+    public modalService: NgbModal,
+    private _todos: TodosService,
+    private _route: ActivatedRoute
+  ) {
+    // if (!this._playerinfo.getisReady()) {
+    //   this._router.navigate(['/intro', this.color]);
+    // }
+    this._route.params.subscribe((params) => {
+      this.color = params['color'];
+    });
+  }
+  ngOnInit(): void {}
+
+  @ViewChild(NgxSnakeComponent)
+  private _snake!: NgxSnakeComponent;
   toggleHistory() {
     // might not be needed
     this.showHistory = !this.showHistory;
@@ -64,20 +82,6 @@ export class GameComponent implements OnInit {
     this.isRunning = false;
     clearInterval(this.interval);
   }
-  constructor(
-    private _router: Router,
-    private _playerinfo: PlayerinfoService,
-    public modalService: NgbModal,
-    private _todos: TodosService
-  ) {
-    if (!this._playerinfo.getisReady()) {
-      this._router.navigate(['/intro']);
-    }
-  }
-
-  @ViewChild(NgxSnakeComponent)
-  private _snake!: NgxSnakeComponent;
-
   public startB() {
     if (this.isGameOver === false) {
       if (!this.isRunning) {
@@ -152,7 +156,7 @@ export class GameComponent implements OnInit {
   public goBack() {
     // this.pReady.emit(false);
     //window.location.reload();
-    this._router.navigate(['/intro']);
+    this._router.navigate(['/intro', this.color]);
   }
   public onGrow() {
     console.log('grow');
@@ -182,5 +186,16 @@ export class GameComponent implements OnInit {
   openModal() {
     this.modalService.open(ScoreboardComponent);
   }
-  ngOnInit(): void {}
+
+  selectColor(color: string): void {
+    this._router.navigate(['/game', color]);
+    console.log('set color: ', color);
+  }
+  public switchColors() {
+    if (this.color === 'contrast') {
+      this.selectColor('normal');
+    } else {
+      this.selectColor('contrast');
+    }
+  }
 }

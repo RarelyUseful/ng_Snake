@@ -39,13 +39,23 @@
     </div>
   </div>
   <br />
-  <button
-    (click)="submit()"
-    (window:keydown.Enter)="name.valid && token.valid && submit()"
-    [disabled]="!name.valid || !token.valid"
-  >
-    PLAY
-  </button>
-  <br />
-  <button (click)="switchColors()">colors: {{ color }}</button>
+  <div>
+    <button
+      class="DefaultTheme"
+      (click)="submit()"
+      (window:keydown.Enter)="name.valid && token.valid && submit()"
+      [disabled]="!name.valid || !token.valid"
+    >
+      PLAY
+    </button>
+  </div>
+
+  <div>
+    <button
+      [ngClass]="color === 'normal' ? 'DarkTheme' : 'LightTheme'"
+      (click)="switchColors()"
+    >
+      colors: {{ color }}
+    </button>
+  </div>
 </div>

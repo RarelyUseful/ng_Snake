@@ -34,31 +34,33 @@ ngx-snake {
       }
     }
   }
-  ngx-snake-tile {
-    background: rgb(155, 255, 105);
-    &.free {
-      div {
-        background: rgb(155, 255, 105);
+  &.normal {
+    ngx-snake-tile {
+      background: rgb(155, 255, 105);
+      &.free {
+        div {
+          background: rgb(155, 255, 105);
+        }
       }
-    }
-    &.head {
-      div {
-        background: rgb(25, 25, 25);
+      &.head {
+        div {
+          background: rgb(95, 95, 95);
+        }
       }
-    }
-    &.tail {
-      div {
-        background: rgb(25, 25, 25);
+      &.tail {
+        div {
+          background: rgb(125, 125, 125);
+        }
       }
-    }
-    &.food {
-      div {
-        background: rgb(155, 105, 255);
+      &.food {
+        div {
+          background: rgb(155, 105, 255);
+        }
       }
-    }
-    &.body {
-      div {
-        background: rgb(25, 25, 25);
+      &.body {
+        div {
+          background: rgb(125, 125, 125);
+        }
       }
     }
   }
@@ -120,6 +122,9 @@ ngx-snake {
   display: grid;
   justify-items: center;
   align-items: center;
+  grid-template-areas:
+    ". . ."
+    ". . .";
   grid-area: buttonshere;
 }
 
@@ -143,6 +148,16 @@ ngx-snake {
   box-shadow: rgb(0, 0, 0) 1px 1px 3px 1px;
   border: 2px solid rgb(155, 255, 105); //firstColour
   display: inline-block;
+  &.contrast {
+    background-image: radial-gradient(
+      at center center,
+      rgb(0, 0, 0) 0%,
+      rgb(105, 240, 25) 27%,
+      rgb(0, 0, 0) 100%
+    );
+    box-shadow: rgb(0, 0, 0) 1px 1px 3px 1px;
+    border: 2px solid rgb(0, 0, 0); //firstColour
+  }
 }
 .myButton:hover {
   background: rgb(155, 255, 105); //firstColour

@@ -1,8 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-import { PlayerinfoService } from '../playerinfo.service';
-import { Authorization, TodosService } from '../todos.service';
+import { PlayerinfoService } from '../services/playerinfo.service';
+import { Authorization, TodosService } from '../services/todos.service';
 
 @Component({
   selector: 'app-intro',
@@ -17,41 +16,40 @@ export class IntroComponent implements OnInit {
     private _route: ActivatedRoute
   ) {
     this._route.params.subscribe((params) => {
-      this.color = params['color'];
+      this.color = params['color'] || 'normal';
     });
   }
 
-  // @Output() pName = new EventEmitter<string>();
-  // @Output() pReady = new EventEmitter<boolean>();
   ngOnInit(): void {}
 
-  public playerName: string = '';
-  public playerEmail: string = '';
-  public playerToken: string = '';
-  public color: string = '';
+  public playerName: string = ''; // EMPTY unless debugging
+  public playerToken: string = ''; // EMPTY unless debugging
+  public color = this._playerinfo.getColor();
 
   public runAuthToken(token: string) {
     this._todos.checkUser(token).subscribe((result: Authorization) => {
       console.log(this.playerToken);
-      console.log(result);
+      console.log('Token correct: ', result.success);
       if (result.success) {
         this._playerinfo.setReady(true);
         this._playerinfo.setToken(token);
-
         this._router.navigate(['/game', this.color]);
       } else alert('Wrong token');
     });
   }
   selectColor(color: string): void {
+    this._playerinfo.setColor(color);
     this._router.navigate(['/intro', color]);
     console.log('set color: ', color);
   }
   public submit() {
     if (this.playerToken === 'Angular') {
+      this._playerinfo.setReady(true);
+      this._playerinfo.setToken('1234');
+      this._playerinfo.setName(this.playerName);
       this._router.navigate(['/game', this.color]);
       //bypass if hoting or API doesn't work
     } else {
-      //this._playerinfo.setEmail(this.playerEmail); //old functionality
       this.runAuthToken(this.playerToken);
       this._playerinfo.setName(this.playerName);
     }

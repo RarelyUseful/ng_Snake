@@ -13,9 +13,13 @@
       #game
       (foodEaten)="onGrow()"
       (gameOver)="onGameOver()"
+      [ngClass]="color === 'normal' ? 'normal' : 'contrast'"
     ></ngx-snake>
   </div>
-  <div class="controlshere">
+  <div
+    class="controlshere"
+    [ngClass]="color === 'normal' ? 'normal' : 'contrast'"
+  >
     <button class="myButtonSq" (click)="startB()">Start</button>
 
     <button
@@ -41,7 +45,7 @@
       &#8656;
     </button>
 
-    <td (click)="score = score + 1">:)</td>
+    <td></td>
 
     <button
       class="myButton"
@@ -60,7 +64,7 @@
     </button>
     <td></td>
   </div>
-  <div class="logshere">
+  <div class="logshere" [ngClass]="color === 'normal' ? 'normal' : 'contrast'">
     <button *ngIf="showHistory" class="LightTheme" (click)="toggleHistory()">
       Hide game logs
     </button>
@@ -90,8 +94,28 @@
     </ul>
   </div>
   <div class="buttonshere">
-    <button class="DarkTheme" (click)="openModal()">Show scoreboard</button>
+    <p></p>
+    <p></p>
+    <p></p>
+    <button
+      [ngClass]="color === 'normal' ? 'DarkTheme' : 'LightTheme'"
+      (click)="switchColors()"
+    >
+      Switch colors
+    </button>
 
-    <button class="DarkTheme" (click)="goBack()">Back do login</button>
+    <button
+      [ngClass]="color === 'normal' ? 'DarkTheme' : 'LightTheme'"
+      (click)="openModal()"
+    >
+      Show scoreboard
+    </button>
+
+    <button
+      [ngClass]="color === 'normal' ? 'DarkTheme' : 'LightTheme'"
+      (click)="goBack()"
+    >
+      Back do login
+    </button>
   </div>
 </div>

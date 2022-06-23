@@ -57,22 +57,22 @@ Parameters
   x    Allow player to select color palette: normal, high contrast
   x    Pass selected color palette through route parameter
    Game page
-      Add support for 'high contrast' color palette
-      Read route 'colors' param
-      Bind route param to game component ([] or [ngClass])
-    extra: allow color palette switching from game page (keep the url synced)
+  x    Add support for 'high contrast' color palette
+  x    Read route 'colors' param
+  x    Bind route param to game component ([] or [ngClass])
+  x  extra: allow color palette switching from game page (keep the url synced)
 Guards
   Player data service modifications 
-    Should expose interface indicating whether there is a player data inside or not (flag, check(), whatever)
-    Visiting intro page should clear data stored in player data service
+  x  Should expose interface indicating whether there is a player data inside or not (flag, check(), whatever)
+  ?  Visiting intro page should clear data stored in player data service ?? line 89
   Guard creation  
-    ng generate service playerDataGuard
-    Inject player data service
-    Implement CanActivate interface
-    Use player data service in 'decision making process'
-      Player data NOT EMPTY: allow navigation
-      Player data EMPTY: redirect to intro page
-    Add created guard to game page route
+  x  ng generate service playerDataGuard
+  x  Inject player data service
+  x  Implement CanActivate interface
+  x  Use player data service in 'decision making process'
+  x    Player data NOT EMPTY: allow navigation
+  x    Player data EMPTY: redirect to intro page
+  x  Add created guard to game page route
   Hint: player data service should use local storage for player data persisting
 
 
