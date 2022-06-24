@@ -12,6 +12,9 @@ import { ScoreboardComponent } from './scoreboard/scoreboard.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { PlayerDataGuardService } from './services/player-data-guard.service';
+import { MyResultsPipe } from './pipes/my-results.pipe';
+import { SortResultsPipe } from './pipes/sort-results.pipe';
+import { LogsortPipe } from './pipes/logsort.pipe';
 
 @NgModule({
   declarations: [
@@ -21,6 +24,9 @@ import { PlayerDataGuardService } from './services/player-data-guard.service';
     LogpipePipe,
     UniqueEventsPipe,
     ScoreboardComponent,
+    MyResultsPipe,
+    SortResultsPipe,
+    LogsortPipe,
   ],
   imports: [
     BrowserModule,

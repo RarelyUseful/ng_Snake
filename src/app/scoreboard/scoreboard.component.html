@@ -11,6 +11,9 @@
 <button type="button" (click)="showBestScores = !showBestScores">
   {{ showBestScores ? "Show Lowest Scores" : "Show Highest Scores" }}
 </button>
+<button type="button" (click)="showMyScores = !showMyScores">
+  {{ showMyScores ? "Show All Scores" : "Show My Scores" }}
+</button>
 <div class="modal-body">
   <table class="table table-striped">
     <thead>
@@ -19,18 +22,25 @@
         <th>Score</th>
       </tr>
     </thead>
-    <tbody *ngIf="showBestScores">
-      <tr *ngFor="let player of dataSortedDesc | slice: 0:10">
+    <tbody>
+      <tr
+        *ngFor="
+          let player of dataSortedDesc
+            | sortResults: showBestScores
+            | myResults: showMyScores
+            | slice: 0:10
+        "
+      >
         <td>{{ player.name }}</td>
         <td>{{ player.score }}</td>
       </tr>
     </tbody>
-    <tbody *ngIf="!showBestScores">
+    <!-- <tbody *ngIf="!showBestScores">
       <tr *ngFor="let player of dataSortedAsc | slice: 0:10">
         <td>{{ player.name }}</td>
         <td>{{ player.score }}</td>
       </tr>
-    </tbody>
+    </tbody> -->
   </table>
   <!-- <div>
     <ul *ngFor="let player of data | slice: 4">

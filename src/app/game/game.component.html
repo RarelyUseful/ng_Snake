@@ -81,10 +81,16 @@
         {{ item }}
       </option>
     </select>
+    <select *ngIf="showHistory" [(ngModel)]="logSort" placeholder="Desc">
+      <option value="Asc">Asc</option>
+      <option value="Desc">Desc</option>
+    </select>
     <ul *ngIf="showHistory">
       <li
         *ngFor="
-          let log of history | logpipe: currentEvent:history.length;
+          let log of history
+            | logpipe: currentEvent:history.length
+            | logsort: logSort:history.length;
           let i = index
         "
       >

@@ -44,6 +44,7 @@ export class GameComponent implements OnInit {
   public time: number = 0;
   public history: Array<Log> = [];
   public currentEvent: string = 'All';
+  public logSort: string = 'Desc';
   public showHistory: boolean = false;
   constructor(
     private _router: Router,

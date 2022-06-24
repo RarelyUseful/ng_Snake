@@ -1,7 +1,7 @@
 /*
 TO DO:
 
-    ASC/DSC order of logs !
+  x  ASC/DSC order of logs !
 
 
 Reading and displaying highscores
@@ -13,21 +13,20 @@ Reading and displaying highscores
   x  List sorting
   x  allow sorting by: score asc/desc
 
-Authentication input
-    (Intro page form) 
+Authentication input (Intro page form) 
   x  Add token input ( student ID ) 
   x  remove email from the form
   x  add token input field (text entry, just required, no special validations)
   x  Upon form submission validate entered token
   x  POST /check-token
 My score
-  On game finished
+On game finished
   x  submit player score and name (POST /scores)
   x  sign with auth token (auth-token header)
-  Display my scores list (component): 
-    filter data (only my entries)
-    sorting by score asc/desc
-    Update score lists every 30 seconds
+Display my scores list (component): 
+  x  filter data (only my entries)
+  x  sorting by score asc/desc
+  ?  Update score lists every 30 seconds
 
               Scores refreshing - RxJS way
                   Use interval()
@@ -49,7 +48,7 @@ Parameters
 Guards
   Player data service modifications 
   x  Should expose interface indicating whether there is a player data inside or not (flag, check(), whatever)
-  ?  Visiting intro page should clear data stored in player data service ?? line 89
+  ?  Visiting intro page should clear data stored in player data service ?? line 60 says store
   Guard creation  
   x  ng generate service playerDataGuard
   x  Inject player data service
@@ -58,7 +57,7 @@ Guards
   x    Player data NOT EMPTY: allow navigation
   x    Player data EMPTY: redirect to intro page
   x  Add created guard to game page route
-  Hint: player data service should use local storage for player data persisting
+  x Hint: player data service should use local storage for player data persisting
 
 
 Intro page - transition to reactive form
