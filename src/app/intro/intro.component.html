@@ -10,10 +10,10 @@
   <h3>Please enter your credentials.</h3>
   <div>
     <input
-      pattern="^[a-zA-Z0-9_.+-]+$"
+      pattern="^([ \u00c0-\u01ffa-zA-Z'\-])+$"
       required
-      minlength="3"
-      maxlength="30"
+      minlength="5"
+      maxlength="15"
       [(ngModel)]="playerName"
       placeholder="Name"
       #name="ngModel"
@@ -22,7 +22,7 @@
     <div *ngIf="name.invalid && name.touched" class="alert">
       <div *ngIf="name.errors?.['required']">Name is required.</div>
       <div *ngIf="name.errors?.['minlength']">
-        Name must be at least 3 characters long.
+        Name must be at least 5 characters long.
       </div>
       <div *ngIf="name.errors?.['pattern']">Name has illegal characters.</div>
     </div>
@@ -30,32 +30,36 @@
   <div>
     <input
       required
+      minlength="4"
       [(ngModel)]="playerToken"
       placeholder="Token"
       #token="ngModel"
     />
     <div *ngIf="token.invalid && token.touched" class="alert">
       <div *ngIf="token.errors?.['required']">Token is required.</div>
+      <div *ngIf="token.errors?.['minlength']">
+        Token must be at least 4 characters long.
+      </div>
     </div>
-  </div>
-  <br />
-  <div>
-    <button
-      class="DefaultTheme"
-      (click)="submit()"
-      (window:keydown.Enter)="name.valid && token.valid && submit()"
-      [disabled]="!name.valid || !token.valid"
-    >
-      PLAY
-    </button>
-  </div>
 
-  <div>
-    <button
-      [ngClass]="color === 'normal' ? 'DarkTheme' : 'LightTheme'"
-      (click)="switchColors()"
-    >
-      colors: {{ color }}
-    </button>
+    <br />
+    <div>
+      <button
+        class="DefaultTheme"
+        (click)="submit()"
+        (window:keydown.Enter)="name.valid && token.valid && submit()"
+        [disabled]="!name.valid || !token.valid"
+      >
+        PLAY
+      </button>
+    </div>
+    <div>
+      <button
+        [ngClass]="color === 'normal' ? 'DarkTheme' : 'LightTheme'"
+        (click)="switchColors()"
+      >
+        colors: {{ color }}
+      </button>
+    </div>
   </div>
 </div>
