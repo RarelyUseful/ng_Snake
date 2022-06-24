@@ -5,41 +5,40 @@ import { Injectable } from '@angular/core';
 })
 export class PlayerinfoService {
   constructor() {}
-  _playername!: string;
+  _playername: string = this.getName();
   _playeremail!: string;
-  _playerready: boolean = false; // FALSE unless debugging
   _playertoken!: string;
-  // _color: string = 'normal'; // change it to read from local storage
-  _color!: string;
+  _color: string = this.getColor();
 
+  //Setters:
   public setName(name: string): void {
     this._playername = name;
+    localStorage.setItem('name', name);
   }
   public setEmail(email: string): void {
     this._playeremail = email;
-  }
-  public setReady(bool: boolean): void {
-    this._playerready = bool;
+    localStorage.setItem('email', email);
   }
   public setColor(value: string): void {
     this._color = value;
+    localStorage.setItem('color', value);
   }
   public setToken(token: string): void {
     this._playertoken = token;
+    //don't store token in localstorage
   }
+
+  //Getters:
   public getName(): string {
-    return this._playername;
+    return localStorage.getItem('name') || '';
   }
   public getEmail(): string {
-    return this._playeremail;
-  }
-  public getisReady(): boolean {
-    return this._playerready;
+    return localStorage.getItem('email') || '';
   }
   public getToken(): string {
     return this._playertoken;
   }
   public getColor(): string {
-    return this._color;
+    return localStorage.getItem('color') || '';
   }
 }

@@ -9,7 +9,7 @@ export class PlayerDataGuardService implements CanActivate {
   canActivate(): boolean {
     console.log('Guard actiated');
 
-    if (this._playerinfo.getName()) {
+    if (this._playerinfo.getName() && this._playerinfo.getToken()) {
       return true;
     } else {
       this._router.navigate(['/intro', this._color]);
@@ -22,7 +22,7 @@ export class PlayerDataGuardService implements CanActivate {
     private _route: ActivatedRoute
   ) {
     this._route.params.subscribe((params) => {
-      this._color = params['color'] || 'normal';
+      this._color = params['color'] || _playerinfo.getColor();
       this._playerinfo.setColor(this._color);
     });
   }

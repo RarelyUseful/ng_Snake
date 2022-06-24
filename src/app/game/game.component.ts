@@ -34,7 +34,7 @@ export class Log {
 export class GameComponent implements OnInit {
   //public darkMode: boolean = false;
   public playerName = this._playerinfo.getName();
-  public color = this._playerinfo.getColor();
+  public color: string = this._playerinfo.getColor();
   public score: number = 0;
   public isRunning: boolean = false;
   public isGameOver: boolean = false;
@@ -52,11 +52,8 @@ export class GameComponent implements OnInit {
     private _todos: TodosService,
     private _route: ActivatedRoute
   ) {
-    // if (!this._playerinfo.getisReady()) {
-    //   this._router.navigate(['/intro', this.color]);
-    // }
     this._route.params.subscribe((params) => {
-      this.color = params['color'];
+      this.color = params['color'] || this._playerinfo.getColor();
     });
   }
   ngOnInit(): void {}
@@ -156,7 +153,7 @@ export class GameComponent implements OnInit {
   public goBack() {
     // this.pReady.emit(false);
     //window.location.reload();
-    this._router.navigate(['/intro', this.color]);
+    this._router.navigate(['/intro', this._playerinfo.getColor()]);
   }
   public onGrow() {
     console.log('grow');
@@ -188,6 +185,7 @@ export class GameComponent implements OnInit {
   }
 
   selectColor(color: string): void {
+    this._playerinfo.setColor(color);
     this._router.navigate(['/game', color]);
     console.log('set color: ', color);
   }

@@ -22,8 +22,8 @@ export class IntroComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  public playerName: string = ''; // EMPTY unless debugging
-  public playerToken: string = ''; // EMPTY unless debugging
+  public playerName: string = this._playerinfo.getName(); // EMPTY unless debugging
+  public playerToken: string = this._playerinfo.getToken(); // EMPTY unless debugging
   public color = this._playerinfo.getColor();
 
   public runAuthToken(token: string) {
@@ -31,7 +31,6 @@ export class IntroComponent implements OnInit {
       console.log(this.playerToken);
       console.log('Token correct: ', result.success);
       if (result.success) {
-        this._playerinfo.setReady(true);
         this._playerinfo.setToken(token);
         this._router.navigate(['/game', this.color]);
       } else alert('Wrong token');
@@ -44,7 +43,6 @@ export class IntroComponent implements OnInit {
   }
   public submit() {
     if (this.playerToken === 'Angular') {
-      this._playerinfo.setReady(true);
       this._playerinfo.setToken('1234');
       this._playerinfo.setName(this.playerName);
       this._router.navigate(['/game', this.color]);

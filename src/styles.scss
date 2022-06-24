@@ -120,11 +120,10 @@ ngx-snake {
 
 .buttonshere {
   display: grid;
+  border-top: 2px solid gainsboro;
   justify-items: center;
   align-items: center;
-  grid-template-areas:
-    ". . ."
-    ". . .";
+  grid-template-areas: ". . .";
   grid-area: buttonshere;
 }
 

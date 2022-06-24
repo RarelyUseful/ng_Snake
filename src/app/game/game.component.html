@@ -94,14 +94,11 @@
     </ul>
   </div>
   <div class="buttonshere">
-    <p></p>
-    <p></p>
-    <p></p>
     <button
       [ngClass]="color === 'normal' ? 'DarkTheme' : 'LightTheme'"
       (click)="switchColors()"
     >
-      Switch colors
+      Colors: {{ color }}
     </button>
 
     <button

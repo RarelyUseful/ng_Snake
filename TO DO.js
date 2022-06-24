@@ -1,19 +1,4 @@
-/* CMD: 
-npm install -g @angular/cli
-  // -g instaluje pakiety globalnie
-
-ng version || ng v  //sprawdza poprawność instalacji
-ng new Project_name
-cd Project-name
-ng serve //uruchamia aplikacje
-ng serve -o || ng serve --open //uruchamia od razu aplikację w oknie przeglądarki
-
-ng g module My_module // tworzy nowu moduł
-ng g component My_comp // ...
-ng g pipe My_pipe //...
-
-ng build // tworzy folder ktorego zawartosc mozemy wrzucic na FTP
---------------------------------------------------------------------------------
+/*
 TO DO:
 
     ASC/DSC order of logs !
