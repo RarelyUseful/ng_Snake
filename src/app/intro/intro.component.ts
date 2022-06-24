@@ -2,6 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PlayerinfoService } from '../services/playerinfo.service';
 import { Authorization, TodosService } from '../services/todos.service';
+import {
+  AbstractControl,
+  FormBuilder,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Component({
   selector: 'app-intro',
@@ -13,7 +21,9 @@ export class IntroComponent implements OnInit {
     private _router: Router,
     private _playerinfo: PlayerinfoService,
     private _todos: TodosService,
-    private _route: ActivatedRoute
+    private _route: ActivatedRoute,
+    private _http: HttpClient,
+    public fb: FormBuilder
   ) {
     this._route.params.subscribe((params) => {
       this.color = params['color'] || 'normal';
@@ -21,7 +31,32 @@ export class IntroComponent implements OnInit {
   }
 
   ngOnInit(): void {}
-
+  public loginForm = this.fb.group({
+    name: [
+      '',
+      {
+        validators: [
+          Validators.required,
+          Validators.pattern("^([ \u00c0-\u01ffa-zA-Z'-])+$"),
+          Validators.min(5),
+          Validators.max(15),
+        ],
+        updateOn: 'blur',
+      },
+    ],
+    token: [
+      '',
+      {
+        validators: [
+          Validators.required,
+          Validators.min(4),
+          Validators.max(10),
+        ],
+        asyncValidators: [],
+        updateOn: 'blur',
+      },
+    ],
+  });
   public playerName: string = this._playerinfo.getName(); // EMPTY unless debugging
   public playerToken: string = this._playerinfo.getToken(); // EMPTY unless debugging
   public color = this._playerinfo.getColor();

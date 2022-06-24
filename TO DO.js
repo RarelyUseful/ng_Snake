@@ -63,8 +63,8 @@ Guards
 
 Intro page - transition to reactive form
     Player name 
-    - required  
-    - min length 5 chars
+  x  - required  
+  x  - min length 5 chars
     Auth code input 
     - required
     - min length 5 chars?
@@ -72,4 +72,8 @@ Intro page - transition to reactive form
     with initial value
     upon change make some element either colored or black&white
     extra: store user input in local storage and fill the form for returning users (dont store auth code)
-*/
+Intro page
+    Auth code input
+      validate externally with custom async validator
+
+    */

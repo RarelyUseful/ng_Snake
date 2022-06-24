@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { NgxSnakeModule } from 'ngx-snake';
 import { IntroComponent } from './intro/intro.component';
@@ -26,6 +26,7 @@ import { PlayerDataGuardService } from './services/player-data-guard.service';
     BrowserModule,
     NgxSnakeModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       {
         path: 'intro/:color',

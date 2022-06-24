@@ -8,43 +8,34 @@
 </header>
 <div>
   <h3>Please enter your credentials.</h3>
-  <div>
-    <input
-      pattern="^[a-zA-Z0-9_.+-]+$"
-      required
-      minlength="3"
-      maxlength="30"
-      [(ngModel)]="playerName"
-      placeholder="Name"
-      #name="ngModel"
-      ng-disabled="disable"
-    />
-    <div *ngIf="name.invalid && name.touched" class="alert">
-      <div *ngIf="name.errors?.['required']">Name is required.</div>
-      <div *ngIf="name.errors?.['minlength']">
-        Name must be at least 3 characters long.
-      </div>
-      <div *ngIf="name.errors?.['pattern']">Name has illegal characters.</div>
+  <form [formGroup]="loginForm" (submit)="submit()">
+    <div>
+      <input type="text" formControlName="name" placeholder="Name" />
+      <!-- <div *ngIf="name.invalid && name.touched" class="alert">
+        <div *ngIf="name.errors?.['required']">Name is required.</div>
+        <div *ngIf="name.errors?.['minlength']">
+          Name must be at least 5 characters long.
+        </div>
+        <div *ngIf="name.errors?.['pattern']">Name has illegal characters.</div>
+      </div> -->
     </div>
-  </div>
-  <div>
-    <input
-      required
-      [(ngModel)]="playerToken"
-      placeholder="Token"
-      #token="ngModel"
-    />
-    <div *ngIf="token.invalid && token.touched" class="alert">
-      <div *ngIf="token.errors?.['required']">Token is required.</div>
+    <div>
+      <input type="text" formControlName="token" placeholder="Token" />
+      <!-- <div *ngIf="token.invalid && token.touched" class="alert">
+        <div *ngIf="token.errors?.['required']">Token is required.</div>
+        <div *ngIf="token.errors?.['minlength']">
+          Token must be at least 4 characters long.
+        </div>
+      </div> -->
     </div>
-  </div>
+  </form>
   <br />
   <div>
     <button
       class="DefaultTheme"
       (click)="submit()"
-      (window:keydown.Enter)="name.valid && token.valid && submit()"
-      [disabled]="!name.valid || !token.valid"
+      (window:keydown.Enter)="!loginForm.valid && submit()"
+      [disabled]="!loginForm.valid"
     >
       PLAY
     </button>
