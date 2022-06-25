@@ -8,11 +8,15 @@
     (click)="activeModal.dismiss('Cross click')"
   ></button>
 </div>
-<button type="button" (click)="showBestScores = !showBestScores">
+<button
+  style="width: 50%"
+  type="button"
+  (click)="showBestScores = !showBestScores"
+>
   {{ showBestScores ? "Show Lowest Scores" : "Show Highest Scores" }}
 </button>
-<button type="button" (click)="showMyScores = !showMyScores">
-  {{ showMyScores ? "Show All Scores" : "Show My Scores" }}
+<button style="width: 50%" type="button" (click)="showMyScores = !showMyScores">
+  {{ showMyScores ? "Show Everyone's Scores" : "Show Only My Scores" }}
 </button>
 <div class="modal-body">
   <table class="table table-striped">
@@ -35,18 +39,7 @@
         <td>{{ player.score }}</td>
       </tr>
     </tbody>
-    <!-- <tbody *ngIf="!showBestScores">
-      <tr *ngFor="let player of dataSortedAsc | slice: 0:10">
-        <td>{{ player.name }}</td>
-        <td>{{ player.score }}</td>
-      </tr>
-    </tbody> -->
   </table>
-  <!-- <div>
-    <ul *ngFor="let player of data | slice: 4">
-      <li>{{ player.name }} : {{ player.score }}</li>
-    </ul>
-  </div> -->
 </div>
 <div class="modal-footer">
   <button

@@ -1,16 +1,5 @@
-import {
-  NgbActiveModal,
-  NgbModal,
-  ModalDismissReasons,
-} from '@ng-bootstrap/ng-bootstrap';
-import {
-  Component,
-  OnInit,
-  Input,
-  Output,
-  EventEmitter,
-  ViewChild,
-} from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgxSnakeComponent } from 'ngx-snake';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PlayerinfoService } from '../services/playerinfo.service';
@@ -32,7 +21,6 @@ export class Log {
   styleUrls: ['./game.component.scss'],
 })
 export class GameComponent implements OnInit {
-  //public darkMode: boolean = false;
   public playerName = this._playerinfo.getName();
   public color: string = this._playerinfo.getColor();
   public score: number = 0;
@@ -62,7 +50,6 @@ export class GameComponent implements OnInit {
   @ViewChild(NgxSnakeComponent)
   private _snake!: NgxSnakeComponent;
   toggleHistory() {
-    // might not be needed
     this.showHistory = !this.showHistory;
   }
 
@@ -152,8 +139,6 @@ export class GameComponent implements OnInit {
   }
 
   public goBack() {
-    // this.pReady.emit(false);
-    //window.location.reload();
     this._router.navigate(['/intro', this._playerinfo.getColor()]);
   }
   public onGrow() {

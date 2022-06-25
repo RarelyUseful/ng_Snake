@@ -61,14 +61,14 @@ Guards
 
 
 Intro page - transition to reactive form
-    Player name 
-    - required  
-    - min length 5 chars
-    Auth code input 
-    - required
-    - min length 5 chars?
-    Color selection
-    with initial value
-    upon change make some element either colored or black&white
-    extra: store user input in local storage and fill the form for returning users (dont store auth code)
+  x  Player name 
+  x  - required  
+  x  - min length 5 chars
+  x  Auth code input 
+  x  - required
+  x  - min length 4 chars
+  x  Color selection
+  x  with initial value
+  x  upon change make some element either colored or black&white
+  x  extra: store user input in local storage and fill the form for returning users (dont store auth code)
 */
