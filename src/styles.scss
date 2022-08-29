@@ -4,13 +4,13 @@ html,
 body {
   position: relative;
   background: rgb(255, 255, 255);
-  display: inline-block;
+  display: flex;
   flex-direction: column;
 }
 header {
   display: block;
   min-height: 100px;
-  min-width: 100%;
+  width: 100%;
   background-color: rgb(25, 25, 25);
   color: rgb(240, 255, 255);
 }
@@ -67,6 +67,7 @@ ngx-snake {
 }
 .container {
   display: grid;
+  max-width: 818px !important; //this prevents bootstrap to force it's styling that breaks my layout
   grid-template-columns: 3.1fr 2.22fr 2.5fr;
   grid-template-rows: 1fr 0.15fr;
   gap: 1px 1px;
@@ -91,11 +92,16 @@ ngx-snake {
   color: bisque;
   text-align: left;
   overflow: auto;
-  background-color: transparent;
-  background-image: url("./assets/woman2.jpg");
+  grid-area: logshere;
   background-size: contain;
   background-repeat: no-repeat;
-  grid-area: logshere;
+  &.contrast {
+    background-color: white;
+  }
+  &.normal {
+    background-color: transparent;
+    background-image: url("./assets/woman2.jpg");
+  }
 }
 
 .controlshere {
@@ -112,10 +118,15 @@ ngx-snake {
     ". . ."
     ". . .";
   grid-area: controlshere;
-  background-color: transparent;
-  background-image: url("./assets/cat2.jpg");
   background-size: contain;
   background-repeat: no-repeat;
+  &.contrast {
+    background-color: white;
+  }
+  &.normal {
+    background-color: transparent;
+    background-image: url("./assets/cat2.jpg");
+  }
 }
 
 .buttonshere {
@@ -133,7 +144,7 @@ ngx-snake {
   min-width: 50px;
   min-height: 50px;
   padding: 8px;
-  border-radius: 50px;
+  border-radius: 10px;
   font-family: Georgia, serif;
   font-weight: 500;
   text-decoration: none;
@@ -144,7 +155,7 @@ ngx-snake {
     rgb(105, 240, 25) 27%,
     rgb(155, 255, 105) 100%
   );
-  box-shadow: rgb(0, 0, 0) 1px 1px 3px 1px;
+  box-shadow: rgb(0, 0, 0) 3px 3px 3px 0px;
   border: 2px solid rgb(155, 255, 105); //firstColour
   display: inline-block;
   &.contrast {
@@ -172,7 +183,7 @@ ngx-snake {
   min-height: 50px;
   max-height: 50px;
   padding: 2px;
-  border-radius: 0px;
+  border-radius: 5px;
   font-family: Georgia, serif;
   font-weight: 500;
   text-decoration: none;
@@ -183,7 +194,7 @@ ngx-snake {
     rgb(105, 240, 25) 27%,
     rgb(155, 255, 105) 100%
   );
-  box-shadow: rgb(0, 0, 0) 1px 1px 3px 1px;
+  box-shadow: rgb(0, 0, 0) 3px 3px 3px 0px;
   border: 2px solid rgb(155, 255, 105); //firstColour
   display: inline-block;
 }
