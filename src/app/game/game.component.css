@@ -1,22 +1,25 @@
 .DarkTheme {
   text-align: center;
-  background-color: rgb(25, 25, 25);
-  color: rgb(240, 248, 255);
+  background-color: #191919;
+  color: aliceblue;
   padding: 5px;
   margin: 2px;
   width: 20vw;
-  &__Small {
-    width: 10vw;
-  }
 }
+
+.DarkTheme__Small {
+  width: 10vw;
+}
+
 .LightTheme {
   text-align: center;
-  background-color: rgb(255, 255, 255);
+  background-color: white;
   color: black;
   padding: 5px;
   margin: 2px;
   width: 18vw;
-  &__Small {
-    width: 10vw;
-  }
+}
+
+.LightTheme__Small {
+  width: 10vw;
 }

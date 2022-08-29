@@ -65,10 +65,10 @@
     <td></td>
   </div>
   <div class="logshere" [ngClass]="color === 'normal' ? 'normal' : 'contrast'">
-    <button *ngIf="showHistory" class="LightTheme" (click)="toggleHistory()">
+    <button *ngIf="showHistory" class="LightTheme__Small" (click)="toggleHistory()">
       Hide game logs
     </button>
-    <button *ngIf="!showHistory" class="DarkTheme" (click)="toggleHistory()">
+    <button *ngIf="!showHistory" class="DarkTheme__Small" (click)="toggleHistory()">
       Show game logs
     </button>
     <br />
